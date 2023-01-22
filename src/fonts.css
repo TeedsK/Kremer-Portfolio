@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+.codef {
+    font-family: 'Source Code Pro', monospace;
+}
+
+.basic-description {
+    font-size: clamp(1.125rem, 1.375vw, 1.375vw);
+    white-space: normal !important;
+}
+
+.sfpro {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 500
+}
+
+.sfproB {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 700
+}
+
+.sfproSB {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 900
+}
+
+.rubik {
+    font-family: 'Rubik', sans-serif;
+}
+
+
+.rubikBF {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+
+.rubikSBF {
+    font-family: 'Rubik';
+    font-weight: 600;
+}
+
+.latoSB {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+}
+
+.robotoSL {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+.robotoL {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.roboto {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.robotoB {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.robotoSB {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.robotoSBI {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.fancyB {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+}
+
+.writing {
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: 400;
+}
