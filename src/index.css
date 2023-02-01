@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  .fixed-parent {
+    position: relative;
+  }
+  
+  .featured-project-title {
+    background-color: orange;
+    width: 100%;
+    height: 20vh;
+    text-align: center;
+    position: relative;
+  }
+  
+  .featured-project-title a {
+    margin-top: 10vh;
+    
+    font-size: 2vw;
+  }
+  
+  .featured-project-title p {
+    font-size: 1.2vw;
+  }

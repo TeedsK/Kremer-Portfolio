@@ -1,0 +1,107 @@
+.kudo-background {
+    background-color: #121214;
+    height: 210vh;
+    width: 100%;
+    position: relative;
+    
+}
+
+.para {
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    height: auto;
+    border-radius: 5px;
+}
+
+.foreground {
+    z-index: 2;
+}
+
+.midground {
+    z-index: 1;
+}
+
+.background {
+    z-index: 0;
+}
+
+.inner-info {
+    position: relative;
+    top: 5vh;
+}
+
+.project-information {
+    width: 40vw;
+    left: 4vw;
+    height: 100vh;
+    top: 0;
+    /* background-color: red; */
+    /* overflow-wrap: break-word; */
+    position: sticky;
+    color: white;
+}
+
+.project-title {
+    font-size: 14vh;
+    margin-bottom: 0px;
+}
+
+.project-subtitle {
+    font-size: 2.5vh;
+    margin-top: -1.9vh;
+    margin-bottom: 0.7vh;
+}
+
+.project-subtitle-buttons a{
+    font-size: 2.0vh;
+    margin-right: 1vw;
+    margin-top: 0px;
+    color: #4277ff;
+    cursor: pointer;
+}
+
+.project-mini-title {
+    font-size: 3.0vh;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.project-mini-subtitle {
+    font-size: 2.8vh;
+}
+
+.project-mini-description {
+    font-size: 2.2vh;
+    color: #bcbcc2;
+}
+
+.project-sections {
+    margin-top: 4vh;
+}
+
+.project-text {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.project-skills {
+    font-size: 2.0vh;
+    float: left;
+    margin-right: 1vw;
+    margin-bottom: 1.5vh;
+    padding: 0.9vh;
+    background-color: #0d0d0e;
+    box-shadow: 0 0 0 1pt #1c1c20;
+    border-radius: 5px;
+}
+
+.project-featured-subtitle {
+    color: #6f6f75;
+    font-size: 2.2vh;
+    margin: 0;
+    padding: 0;
+}

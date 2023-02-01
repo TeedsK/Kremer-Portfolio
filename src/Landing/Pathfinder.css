@@ -1,0 +1,33 @@
+
+#grid_container {
+    position: absolute;
+    right: 0;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #191c1e;
+    z-index: 0;
+}
+
+#grid-gradient-right {
+    z-index: 2;
+    width: 0%;
+    height: 130vh;
+    position: absolute;
+    background-image: linear-gradient(to right, white, rgba(0,0,0,0));
+}
+#grid-gradient-up {
+    z-index: 2;
+    width: 100%;
+    bottom: 0;
+    height: 40vh;
+    position: absolute;
+    /* background-image: linear-gradient(to top, white, rgba(0,0,0,0)); */
+}
+
+.node_child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+}

@@ -1,0 +1,241 @@
+.project-list-background {
+    position: relative;
+    height: 72vh;
+    background-image: linear-gradient(120deg, #151518, #1d1c20);
+    
+}
+
+.under-white {
+    position: absolute;
+    bottom: 0vh;;
+    width: 100%;
+    height: 13vh;
+    background-color: white;
+}
+
+.project-list-info {
+    padding-top: 7vh;
+}
+
+.project-list-title {
+    position: relative;
+    color: white;
+    /* padding-top: 12vh; */
+    margin-left: 5vw;
+    margin-top: 5vh;
+    font-size: 5vw;
+    transition: opacity 1s ease-in-out;
+}
+
+.project-list-subtitle {
+    color: #bcbcc2;
+    margin-left: 5vw;
+    font-size: 1.2vw;
+    margin-top: 0.5vh;
+    transition: opacity 1s ease-in-out;
+}
+
+section {
+    width: 100vw;
+    display: flex;
+    justify-content: left;
+    overflow-x: auto;
+    position: relative;
+    transition: opacity 0.6s ease-in-out;
+}
+
+section::-webkit-scrollbar {
+    visibility: hidden;
+}
+
+.slideshow-card {
+    width: 40vw;
+    min-width: 40%;
+    height: 30vh;
+    position: relative;
+    left: 0;
+    text-align: center;
+    padding-top: 6.5vh;
+    margin: 5vh 2vw;
+    background-color: #1b1a1e;
+    /* transition: 0.5s; */
+    border-radius: 1vh;
+    outline: 0.2vw solid #201f24;
+}
+
+.expand_button {
+    float: right;
+    margin-top: 0.4vw;
+    margin-right: 0.5vw;
+    width: 2.5vw;
+    height: 2.5vw;
+    background-color:#18181b;
+    position: relative;
+    border-radius: 0.3vw;
+    cursor: pointer;
+}
+
+
+
+/* .slideshow-card:hover {
+    min-width: 450px;
+    height: 150px;
+    margin: 5px 10px;
+} */
+
+.slideshow-header {
+    position: absolute;
+    width: 100%;
+    height: 6vh;
+    background-color: #201f24;
+    top: 0;
+    margin-top: 0;
+    border-top-left-radius: 1vh;
+    border-top-right-radius: 1vh;
+}
+
+.slideshow-header a {
+    color: white;
+    position: relative;
+    top: 1.65vh;
+    float: left;
+    left: 1.2vw;
+    font-size: 1.0vw;
+}
+
+.card_under_text {
+    margin-top: 1vh;
+    text-align: left;
+    overflow: hidden;
+    margin-right: 1vw;
+}
+
+.card_under_text .small_title {
+    color: white;
+    width: 100%;
+    text-align: left;
+    margin-top: 0.5vh;
+    
+}
+
+.item_info {
+    overflow: hidden;
+}
+
+
+.expand-arrow {
+    width: 60%;
+    margin-top: 45%;
+    position: relative;
+    background-color: orange;
+} 
+
+.expand-arrow span {
+    position: absolute;
+    width: 1vw;
+    height: .22vh;
+    background-color: #efefef;
+    display: inline-block;
+    transition: all .2s ease;
+    border-radius: 1vh;
+}
+
+.arrow-middle {
+    transition: all 0.3s ease-in-out;
+    transform: rotate(180deg);
+}
+.arrow-upwards {
+    transition: all 0.3s ease-in-out;
+    transform: rotate(-90deg);
+}
+.expand-arrow span:active {
+    left: 0;
+    transform: rotate(45deg);
+}
+ 
+
+.card-gradient {
+    /* transition: all 0.5s ease-in-out; */
+    display: block;
+    position: absolute;
+    background-image: linear-gradient(to top, #141315 35%, rgba(0,0,0,0));
+    bottom: 0px;
+    height: 50%;
+    width: 100%;
+    opacity: 1;
+    z-index: 1;
+}
+
+.skills-info {
+    width: 99%;
+    opacity: 0;
+    padding: 5px;
+    border-top: 1px solid rgb(55,55,55);
+    position: absolute;
+    bottom: 5px;
+}
+
+.card_under_text a {
+    transition: 0.5s;
+    width: 560px;
+    float: left;
+    font-size: 15px;
+    margin-left: 20px;
+    /* white-space: nowrap; */
+    /* text-overflow: ellipsis; */
+    display: block;
+    overflow: hidden;
+}
+
+.small_description {
+    margin-top: 3px;
+    margin-bottom: 5px;
+    color: rgb(163,163,163)
+}
+
+.slideshow_gradient {
+    z-index: 3;
+    position: absolute;
+    width: 30%;
+    height: 35vh;
+    pointer-events : none;
+}
+
+.gradient-containers {
+    z-index: 3;
+    position: absolute;
+    margin-top: 2vh;
+    width: 30%;
+    height: 42vh;
+    pointer-events : none;
+}
+
+.left-gradient-containers {
+    left: 0;
+    /* background-color: green; */
+}
+
+.gradient-left-1 {
+    width: 100%;
+    height: 33.25vh;
+    /* background-image: linear-gradient(to right, rgb(21, 21, 25, 1), rgba(0,0,0,0)); */
+}
+
+.gradient-right-2 {
+    /* background-image: linear-gradient(to left, rgb(255, 255, 255, 0.1), rgba(255,255,255,0)); */
+    width: 100%;
+    height: 10vh;
+    bottom: 0;
+}
+
+.right-gradient-containers {
+    right: 0;
+    /* background-color: orange; */
+}
+
+.gradient-right-1 {
+    width: 100%;
+    height: 33.25vh;
+    /* background-image: linear-gradient(to left, rgb(28, 27, 31, 1), rgba(0,0,0,0)); */
+}
+
