@@ -7,6 +7,12 @@ function componanyLink(link) {
     window.open(link, '_blank');
 }
 
+/**
+ * Creates a new experience card
+ * 
+ * @param {*} props - the properties of the card
+ * @returns a new experience card 
+ */
 function ExperienceCard(props) {
 
     const element =
