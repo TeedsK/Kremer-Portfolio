@@ -7,6 +7,8 @@ function componanyLink(link) {
     window.open(link, '_blank');
 }
 
+const PATH = "M66.11101,92.425 C64.52401,152.421 69.41501,263.969 148.57201,273.289 222.97701,282.015 456.15401,266.255 504.19601,104 536.46901,-5 430.00901,-19.944 296.79801,-4.688 137.93201,13.505 81.58701,80.47 66.83801,92.604 ";
+
 /**
  * Creates a new experience card
  * 
@@ -35,24 +37,35 @@ function ExperienceCard(props) {
     return element;
 }
 
+/**
+ * This function moves the cards up one by one
+ * 
+ * @param {*} positions - the current positions of the cards
+ * @param {*} index - the index of the card which is currently being animated
+ * @param {*} total - the total number of cards
+ */
 function moveUp(positions, index, total) {
 
     const slides = document.getElementsByClassName('experience')
-    console.log(positions);
+   
     for (let i = 0; i < total + 1; i++) {
         if (i != index) {
+            const startingPosition = positions[i];
             const slide = slides[i];
             gsap.to(slide, {
                 duration: 5,
                 ease: "power1.inOut",
                 motionPath: {
-                    path: "M68.44901,38.39 C68.77201,91.22 58.48401,243.335 137.65501,252.625 212.07501,261.357 485.20501,235.173 486.83301,135.9 488.59701,28.284 430.77101,-10.087 296.79801,-4.688 75.78201,4.218 68.65001,25.48 68.80101,38.782 ",
+                    path: PATH,
                     alignOrigin: [0.5, 0.5],
                     start: positions[i],
                     end: positions[i] + 0.05
                 },
+                onUpdate() {
+                    positions[i] = startingPosition + (0.05 * this.ratio);
+                },
                 onComplete() {
-                    positions[i] = positions[i] + 0.05;
+                    // positions[i] = positions[i] + 0.05;
                     slide.style.zIndex = positions[i] / 0.05;
                 }
             })
@@ -60,6 +73,13 @@ function moveUp(positions, index, total) {
     }
 }
 
+/**
+ * This function switches the card that is in the front to move it to the back
+ * 
+ * @param {*} positions - the current positions of the cards
+ * @param {*} index - the index of the card which should be moved to the back
+ * @param {*} total - the total number of cards
+ */
 function runSwitchAnimation(positions, index, total) {
     if (index < 0) {
         index = total
@@ -80,7 +100,8 @@ function runSwitchAnimation(positions, index, total) {
         scale: 0.25,
         borderRadius: "50%",
         outline: "0vw solid #393943",
-        width: "40%",
+        width: "25vw",
+        height: "25vw",
         yoyo: true,
         repeatDelay: 5,
         repeat: 1,
@@ -98,10 +119,9 @@ function runSwitchAnimation(positions, index, total) {
     gsap.to(slide, {
         duration: time,
         ease: "power1.inOut",
-        // immediateRender: true,
         motionPath: {
-            path: "M68.44901,38.39 C68.77201,91.22 58.48401,243.335 137.65501,252.625 212.07501,261.357 485.20501,235.173 486.83301,135.9 488.59701,28.284 430.77101,-10.087 296.79801,-4.688 75.78201,4.218 68.65001,25.48 68.80101,38.782 ",
-            // align: "M68.44901,38.39 C68.77201,91.22 58.48401,243.335 137.65501,252.625 212.07501,261.357 485.20501,235.173 486.83301,135.9 488.59701,28.284 430.77101,-10.087 296.79801,-4.688 75.78201,4.218 68.65001,25.48 68.80101,38.782 ",
+            path: PATH,
+                    
             alignOrigin: [0.5, 0.5],
             start: 0,
             end: 1.0 - (0.05 * (total))
@@ -144,7 +164,7 @@ export class Experience extends React.Component {
         for (let i = total; i >= 0; i--) {
             gsap.to(elements[i], {
                 motionPath: {
-                    path: "M68.44901,38.39 C68.77201,91.22 58.48401,243.335 137.65501,252.625 212.07501,261.357 485.20501,235.173 486.83301,135.9 488.59701,28.284 430.77101,-10.087 296.79801,-4.688 75.78201,4.218 68.65001,25.48 68.80101,38.782  ",
+                    path: PATH,
                     alignOrigin: [0.5, 0.5],
                     start: 0,
                     end: this.state.positions[i],
@@ -158,13 +178,16 @@ export class Experience extends React.Component {
 
             let hoverAnimation = gsap.to(elements[i], {
                 paused: true,
+                duration: 0.5,
+                ease: "power1.inOut",
                 css: {
-                    top: "13%",
+                    top: "12%",
                 },
             })
         
             elements[i].addEventListener("mouseenter", () => {
-                if(positions[i] <= 0.96)
+                console.log(positions[i])
+                if(positions[i] <= 0.955)
                     hoverAnimation.play()
             });
             elements[i].addEventListener("mouseleave", () => hoverAnimation.reverse());

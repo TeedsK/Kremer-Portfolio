@@ -304,9 +304,9 @@ export class AboutMe extends React.Component {
                     <div className='about-me-container'>
                         <div className="inner-container">
                             <h2 id="about-title" className="fade sfproSB">About Me</h2>
-                            <p  id="about-description" className="fade sfproB">
-                                Aside from a passion for computer science, I'm a person who loves to <span className="traveler">travel.</span> I'm a creative <span className="stop-motion">stop-motion</span> filmmaker. 
-                                I grew a skill for <span className="video-editing">video editing.</span> I have an aspiration to become a <span className="machine-learning">artificial inteligence</span> engineer, 
+                            <p  id="about-description" className="fade sfpro">
+                                Aside from a passion for computer science, I'm a person who loves to <span className="sfproB traveler">travel.</span> I'm a creative <span className="sfproB stop-motion">stop-motion</span> filmmaker. 
+                                I grew a skill for <span className="sfproB video-editing">video editing.</span> I have an aspiration to become a <span className="sfproB machine-learning">artificial inteligence</span> engineer, 
                                 wanting to create innovative solutions for modern issues that'll last until the future.
                             </p>
                         </div>

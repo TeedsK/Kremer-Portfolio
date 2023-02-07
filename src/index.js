@@ -7,7 +7,9 @@ import { Coding } from './Landing/Code';
 import { Project } from './projects/Project'
 import { ProjectList } from './projects/ProjectList';
 import { AboutMe } from './AboutMe/AboutMe'
+import { Education } from './Education/Education'
 import { Experience } from './Experience/Experience'
+import { Overview } from './Overview/Overview'
 import reportWebVitals from './reportWebVitals';
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -131,9 +133,10 @@ Investigated the feasibility to customize Wix website templates to improve the o
         ]}>
 
       </Experience>
-      {/* <div className="layer-test3">
-       
-        </div> */}
+
+      <Education></Education>
+
+      <Overview></Overview>
 
 
     </div>

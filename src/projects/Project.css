@@ -1,5 +1,5 @@
 .kudo-background {
-    background-color: #121214;
+    background-color: #111111;
     height: 210vh;
     width: 100%;
     position: relative;
@@ -13,7 +13,8 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     height: auto;
-    border-radius: 5px;
+    border-radius: 0.25vw;
+    box-shadow: 0 0 1vw rgba(0,0,0,0.5);
 }
 
 .foreground {

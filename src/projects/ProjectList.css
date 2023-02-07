@@ -1,7 +1,8 @@
 .project-list-background {
     position: relative;
     height: 72vh;
-    background-image: linear-gradient(120deg, #151518, #1d1c20);
+    background-color: #111111;
+    /* background-image: linear-gradient(-120deg, #151518, #111111); */
     
 }
 

@@ -1,0 +1,46 @@
+.education-container {
+    background-color: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.education-animation-background {
+    width: 100vw;
+    height: auto;
+    position: absolute;
+}
+
+.education-text-wrapper {
+    z-index: 5;
+    /* background-color: aqua; */
+    width: 45vw;
+    left: 50%;
+    margin-top: 25%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-20%);
+    text-align: center;
+    
+}
+
+.education-text-wrapper a {
+    font-size: 9vh;
+    transition: opacity 1s ease-in-out;
+}
+
+.education-text-wrapper img {
+    transition: opacity 1s ease-in-out;
+}
+
+.education-text-wrapper p {
+    font-size: 2.4vh;
+    transition: opacity 1s ease-in-out;
+    color: #6f6f75;
+}
+
+.black {
+    color: black;
+}
+
+.uofu-red {
+    color: #CC0000;
+}
