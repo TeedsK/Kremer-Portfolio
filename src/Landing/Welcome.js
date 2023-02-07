@@ -88,8 +88,16 @@ export class Welcome extends React.Component {
 
     componentDidMount() {
 
+        GRID_CONTAINER = document.getElementById('grid_container');
+        let nodeSize = 0.9;
+    
+            let width = vw(45) / vw(nodeSize);
+            let height = vh(110) / (vw(nodeSize));
+           
+            GRID = generate_grid(height, width, nodeSize)
+
         delay(3200).then(() => {
-            GRID_CONTAINER = document.getElementById('grid_container');
+            
             gsap.fromTo("#grid_container", {
                 duration: 1.5,
                 css: {
@@ -105,12 +113,7 @@ export class Welcome extends React.Component {
                 ease: "power2.out",
             }
             );
-            let nodeSize = 0.9;
-    
-            let width = vw(45) / vw(nodeSize);
-            let height = vh(110) / (vw(nodeSize));
-           
-            GRID = generate_grid(height, width, nodeSize)
+            
             repeatMaze();
             
         })
@@ -131,7 +134,7 @@ export class Welcome extends React.Component {
                         <img src="/images/twitter.png" onClick={this.imgClick.bind(this, "https://twitter.com/TeedsTK")}></img>
                         <img src="/images/instagram.png" onClick={this.imgClick.bind(this, "https://www.instagram.com/theo.kremer/")}></img>
                     </div>
-                    <div className="hyper-links sfproB blue">
+                    <div className="hyper-links sfpro blue">
                         <a>projects</a>
                         <a>about me</a>
                         <a>experience</a>

@@ -4,8 +4,8 @@ import './index.css';
 import './fonts.css'
 import { Welcome } from './Landing/Welcome';
 import { Coding } from './Landing/Code';
-import { Project } from './projects/Project'
-import { ProjectList } from './projects/ProjectList';
+import { Project } from './Projects/Project'
+import { ProjectList } from './Projects/ProjectList';
 import { AboutMe } from './AboutMe/AboutMe'
 import { Education } from './Education/Education'
 import { Experience } from './Experience/Experience'
