@@ -145,9 +145,9 @@ export class Welcome extends React.Component {
                 </div>
                 <div className="text-wrapper">
                     <div className="sfproB basic-description">
-                        <a className="ani welcome-hello lg-text">Hello,</a>
+                        <a className="ani sfpro welcome-hello lg-text">Hello,</a>
                         <br />
-                        <a className="ani welcome-hello lg-text">my name is</a>
+                        <a className="ani sfpro welcome-hello lg-text">my name is</a>
                         <br />
                         <a className="ani sfproSB name">Theo Kremer</a>
                         <br />

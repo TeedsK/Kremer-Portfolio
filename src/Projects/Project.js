@@ -43,10 +43,10 @@ export class Project extends React.Component {
 
             if (vertInView && horInView) {
                 elements[i].style.opacity = "1"
-                elements[i].style.marginLeft = "0vw";
+                elements[i].style.top = "0vw";
             } else {
                 elements[i].style.opacity = "0"
-                elements[i].style.marginLeft = "-1vw";
+                elements[i].style.top = "-1vw";
             }
         }
     }
@@ -107,7 +107,7 @@ export class Project extends React.Component {
                 <div className="project-details" key={index}>
                     <a style={{backgroundImage: `linear-gradient(45deg, ${this.props.gradient[0]}, ${this.props.gradient[1]})`}} className="project-text sfproB project-mini-title">{element.title}</a>
                     <p className="project-text sfproB project-mini-subtitle">{element.subtitle}</p>
-                    <pre className="project-text sfproB project-mini-description">{element.description}</pre>
+                    <pre className="project-text sfpro project-mini-description">{element.description}</pre>
                     {skills}
                 </div>
             )
@@ -123,8 +123,8 @@ export class Project extends React.Component {
                         <a className="project-text sfproSB project-title">{this.props.projectTitle}</a>
                         <p className="project-text sfproB project-subtitle"><span>{this.props.projectDescription}</span></p>
                         <div className="project-text project-subtitle-buttons">
-                            <a className="sfproB">site</a>
-                            <a className="sfproB">download</a>
+                            <a className="sfpro">site</a>
+                            <a className="sfpro">download</a>
                         </div>
                         <div className="project-sections">
                             {sections}
