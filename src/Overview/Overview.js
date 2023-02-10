@@ -2,10 +2,22 @@ import React from "react";
 import './Overview.css'
 
 function OverviewSection(props) {
+
+    // const items = []
+
+    // props.itemBlocks.forEach((value, i) => {
+    //     items.push(
+    //         <Language key={i} lang={value}/>
+    //     )
+    // })
+
     return (
         <div className="overview-item">
             <a className="sfproSB overview-item-title">{props.title}</a>
             <p className="sfproB overview-item-subtitle">{props.subtitle}</p>
+            <div>
+                {/* {items} */}
+            </div>
         </div>
     )
 }
@@ -26,24 +38,37 @@ export class Overview extends React.Component {
                     <div className="overview-section overview-left">
                         <OverviewSection
                             title="Debugger"
-                            subtitle="Efficiently identify and fix errors within software"
+                            subtitle="Efficiently identifying and fixing errors within software"
+                            description=""
                         />
                     </div>
                     <div className="overview-section overview-middle">
                         <OverviewSection
                             title="Full-Stack Developer"
                             subtitle="Writing front and back end code"
+                            coloredTitle="Languages I Know"
+                            itemBlocks={[
+                                "Java",
+                                "Python",
+                                "C#",
+                                "PHP",
+                                "HTML",
+                                "CSS",
+                                "JavaScript",
+                                "React"
+                            ]}
                         />
                     </div>
                     <div className="overview-section overview-right">
                         <OverviewSection
                             title="Designer"
                             subtitle="Creating elegant appearances for users"
+                            description=""
                         />
                     </div>
                 </div>
                 <div className="overview-other-details">
-                    <div className="sfproSB known-programming-languages">
+                    {/* <div className="sfproSB known-programming-languages">
                         <a>Programming Languages I Know</a>
                         <div className="known-languages-wrapper">
                             <Language lang="Java"/>
@@ -65,7 +90,7 @@ export class Overview extends React.Component {
                             <Language lang="Adobe Illustrator"/>
                             <Language lang="Git"/>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

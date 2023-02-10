@@ -29,10 +29,6 @@ root.render(
       </div>
 
       <div className="fixed-parent">
-        {/* <div className="featured-project-title">
-          <a className="sfproSB">Featured Project</a>
-          <p className="sfproB">a project I am most proud about</p>
-        </div> */}
         <Project
           projectTitle="Kudo"
           projectDescription="E-Commerce Manager"
@@ -51,52 +47,16 @@ root.render(
             }
           ]}
         />
-        {/* <Project
-          projectTitle="RelationFlix "
-          projectDescription="Photo and Video sharing Website"
-          site="https://kudotools.com"
-          download="https://github.com/TeedsK/Kudo-Download/releases"
-          gradient={['#f775e8', '#ec5c77']}
-          sections={[
-            {
-              title: "Involvement",
-              subtitle: "frontend developer",
-              description: `Created a hosting website for photo's and pictures to be dynamically uploaded\n\nUsed React to develop the UI\n\nUsed YouTube's AI to allow linked videos`
-            },
-            {
-              title: "Languages & Skills",
-              skills: ["React", "CSS", "JavaScript"]
-            }
-          ]}
-        /> */}
-        {/* <Project
-          projectTitle="Pathfinder"
-          projectDescription="Represenation of a Shortest Path Algorithm"
-          site="https://kudotools.com"
-          download="https://github.com/TeedsK/Kudo-Download/releases"
-          gradient={['#11efcb', '#854ff3']}
-          sections={[
-            {
-              title: "Involvement",
-              subtitle: "full-stack developer",
-              description: `Through data structures and algorithms `
-            },
-            {
-              title: "Languages & Skills",
-              skills: ["React", "HTML", "CSS", "JavaScript"]
-            }
-          ]}
-        /> */}
 
       </div>
 
-      <ProjectList>
+      {/* <ProjectList>
 
       </ProjectList>
 
-      <AboutMe />
+      <AboutMe /> */}
 
-      <Experience
+      {/* <Experience
         workplaces={[
           {
             companyName: "Tippett Studios",
@@ -130,13 +90,13 @@ Investigated the feasibility to customize Wix website templates to improve the o
             myRole: "Intern",
           },
 
-        ]}>
+        ]}> */}
 
-      </Experience>
+      {/* </Experience>
 
       <Education></Education>
 
-      <Overview></Overview>
+      <Overview></Overview> */}
 
 
     </div>
