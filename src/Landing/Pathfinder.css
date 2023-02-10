@@ -6,6 +6,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     background-color: #191c1e;
+    /* background-color: orange; */
     z-index: 0;
 }
 
@@ -30,4 +31,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50% , -50%);
+}
+
+.nodeRow {
+    width: 100%;
+    overflow: hidden;
+    /* background-color: orange; */
 }

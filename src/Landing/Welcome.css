@@ -157,7 +157,7 @@ background: radial-gradient(circle, rgba(20,32,43,1) 0%, rgba(27,25,30,1) 100%);
     font-size: clamp(1.0rem, 1.0vw, 2.59vw);
 }
 
-.hyper-links {
+.hyper-links-wrapper {
     position: absolute;
     margin-right: 0;
     right: 2vw;
@@ -167,14 +167,33 @@ background: radial-gradient(circle, rgba(20,32,43,1) 0%, rgba(27,25,30,1) 100%);
     align-items: center; 
 }
 
-.hyper-links a {
+.hyper-links {
     float: left;
     cursor: pointer;
     position: relatiave;
     margin-left: 2vw;
     margin-top: -20vh;
     font-size: clamp(1.0rem, 1.0vw, 2.59vw);
+
+    text-decoration: none;
+    background-image: linear-gradient(#faca96, #f99a85);
+    background-size: 0% 0.13em;
+    background-position-y: 100%;
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.2s ease-in-out, opacity 0.3s ease-in-out;
+    animation: 0.4s ease-out hyper-links-intro;
+    animation-fill-mode: forwards;
 }
+
+.hyper-links:hover,
+.hyper-links:focus,
+.hyper-links:active {
+background-size: 100% 0.13em;
+background-position-x: 0%;
+}
+
+
 
 .social-links {
     position: absolute;
@@ -199,10 +218,6 @@ background: radial-gradient(circle, rgba(20,32,43,1) 0%, rgba(27,25,30,1) 100%);
     animation-fill-mode: forwards;
 }
 
-.hyper-links a {
-    animation: 0.4s ease-out hyper-links-intro;
-    animation-fill-mode: forwards;
-}
 
 .resume-wrapper {
     margin-top: -20vh;
@@ -215,9 +230,11 @@ background: radial-gradient(circle, rgba(20,32,43,1) 0%, rgba(27,25,30,1) 100%);
 .social-links img:nth-child(2) { animation-delay: 0.3s }
 .social-links img:nth-child(3) { animation-delay: 0.5s }
 .social-links img:nth-child(4) { animation-delay: 0.7s }
-.hyper-links a:nth-child(1) { animation-delay: 0.5s }
-.hyper-links a:nth-child(2) { animation-delay: 0.7s }
-.hyper-links a:nth-child(3) { animation-delay: 0.9s }
+.hyper-links:nth-child(1) { animation-delay: 0.4s }
+.hyper-links:nth-child(2) { animation-delay: 0.55s }
+.hyper-links:nth-child(3) { animation-delay: 0.70s }
+.hyper-links:nth-child(4) { animation-delay: 0.85s }
+.hyper-links:nth-child(5) { animation-delay: 1.0s }
 
 
 @keyframes hyper-links-intro {
