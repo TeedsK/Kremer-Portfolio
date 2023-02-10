@@ -259,9 +259,10 @@ class Node {
         this.size_animation = gsap.to(`#${this.identity}`,
         {
             duration: 0.25,
-            borderRadius: '0.2vw',
-            scaleX: this.scaleWidth,
-            scaleY: this.scaleHeight,
+            // borderRadius: '0.1vw',
+            width: `calc(${this.width}vw + 0.1vw)`, 
+            height: `calc(${this.width}vw + 0.1vw)`, 
+            // scale: 1,
             // rotation: 0.01,
             paused: true,
             reversed: true
@@ -278,11 +279,8 @@ class Node {
         this.node_child =
             <div id={`${this.identity}`} className="node_child node_element"
                 style={{
-                    position: `relative`,
-                    transform: `scale(0)`,
-                    width: `calc(${this.width}vw + 0.1vw)`,
-                    height: `calc(${this.width}vw + 0.1vw )`,
-                    
+                    width: `0%`,
+                    height: `0%`,
                 }}>
 
             </div>;
@@ -295,7 +293,8 @@ class Node {
                     height: `calc(${this.width}vw)`,
                     background: `rgb${this.color}`,
                     float: `left`,
-                    position: `relative`
+                    position: `relative`,
+                    overflow: `hidden`
                 }}>
                 {this.node_child}
             </div>;
