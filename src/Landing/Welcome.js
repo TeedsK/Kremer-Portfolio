@@ -110,7 +110,7 @@ export class Welcome extends React.Component {
         delay(3200).then(() => {
 
             gsap.to("#grid_container", {
-                    duration: 1,
+                    duration: 1.5,
                     css: {
                         right: '-1%',
                     },
