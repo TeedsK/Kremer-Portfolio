@@ -3,7 +3,7 @@ import './Welcome.css'
 
 import './Pathfinder.css'
 import { Pathfinder } from "./Pathfinder";
-
+import { AStarPathfinding } from "./APathfinder";
 
 
 /**
@@ -75,7 +75,8 @@ export class Welcome extends React.Component {
                         <a className="ani lg-text">I find the <span className="text-gradient gradient-3">best path</span> to a solution</a>
                     </div>
                 </div>
-                <Pathfinder></Pathfinder>
+                {/* <Pathfinder></Pathfinder> */}
+                <AStarPathfinding/>
             </div>
         )
     }
