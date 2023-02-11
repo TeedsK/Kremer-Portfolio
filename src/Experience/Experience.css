@@ -1,7 +1,7 @@
 .experience-wrapper {
     /* background-color: orange; */
     width: 100%;
-    height: 80vh;
+    height: 70vh;
 }
 
 .experience-text-wrapper {
@@ -17,7 +17,7 @@
 }
 
 .experience-text-wrapper a {
-    margin-left: 5vw;
+    
     font-size: 9vh;
     transition: opacity 1s ease-in-out;
     color: #1d1d1f;
@@ -27,7 +27,6 @@
 .experience-text-wrapper p {
     font-size: 2.5vh;
     margin: 0;
-    margin-left: 5vw;
     transition: opacity 1s ease-in-out;
     color: #6f6f75;
 }
@@ -39,7 +38,6 @@
     height: 100%;
     position: relative;
     pointer-events: none;
-    /* background-color: green; */
 }
 
 .experience {

@@ -7,9 +7,7 @@ function componanyLink(link) {
     window.open(link, '_blank');
 }
 
-const PATH = "M66.11101,92.425 C64.52401,152.421 69.41501,263.969 148.57201,273.289 222.97701,282.015 456.15401,266.255 504.19601,104 536.46901,-5 430.00901,-19.944 296.79801,-4.688 137.93201,13.505 81.58701,80.47 66.83801,92.604 ";
-const MIRROR_PATH = "M -66.111 92.425 C -64.524 152.421 -69.415 263.969 -148.572 273.289 C -222.977 282.015 -456.154 266.255 -504.196 104 C -536.469 -5 -430.009 -19.944 -296.798 -4.688 C -137.932 13.505 -81.587 80.47 -66.838 92.604"
-
+let PATH;
 
 /**
  * Creates a new experience card
@@ -20,8 +18,10 @@ const MIRROR_PATH = "M -66.111 92.425 C -64.524 152.421 -69.415 263.969 -148.572
 function ExperienceCard(props) {
 
     const element =
-        <div className="fade experience">
-            <div className={`experience-gradient exp-grad-${props.index}`} />
+        <div className={`fade exp${props.section} experience`} style={{
+            right: (props.rightOriented ? "100" : "0")
+        }}>
+            <div className={`exp-grad${props.section} experience-gradient exp-grad-${props.index}`} />
             <div className="experience-header">
                 <a className="sfproB experience-company-name">{props.companyName}</a>
                 <a className="sfproB experience-company-role">{props.myRole}</a>
@@ -35,7 +35,7 @@ function ExperienceCard(props) {
             </div>
         </div>
 
-    
+
     return element;
 }
 
@@ -46,10 +46,10 @@ function ExperienceCard(props) {
  * @param {*} index - the index of the card which is currently being animated
  * @param {*} total - the total number of cards
  */
-function moveUp(positions, index, total) {
+function moveUp(path, section, positions, index, total) {
 
-    const slides = document.getElementsByClassName('experience')
-   
+    const slides = document.getElementsByClassName('exp' + section)
+
     for (let i = 0; i < total + 1; i++) {
         if (i != index) {
             const startingPosition = positions[i];
@@ -58,7 +58,7 @@ function moveUp(positions, index, total) {
                 duration: 5,
                 ease: "power1.inOut",
                 motionPath: {
-                    path: PATH,
+                    path: path,
                     alignOrigin: [0.5, 0.5],
                     start: positions[i],
                     end: positions[i] + 0.05
@@ -82,15 +82,15 @@ function moveUp(positions, index, total) {
  * @param {*} index - the index of the card which should be moved to the back
  * @param {*} total - the total number of cards
  */
-function runSwitchAnimation(positions, index, total) {
+function runSwitchAnimation(path, section, positions, index, total) {
     if (index < 0) {
         index = total
     }
-    const slide = document.getElementsByClassName('experience')[index];
-    const gradient = document.getElementsByClassName('experience-gradient')[index];
+    const slide = document.getElementsByClassName('exp' + section)[index];
+    const gradient = document.getElementsByClassName('exp-grad' + section)[index];
     const time = 10;
 
-    moveUp(positions, index, total);
+    moveUp(path, section, positions, index, total);
     gsap.to(slide, {
         delay: (time / 3),
         css: {
@@ -122,8 +122,8 @@ function runSwitchAnimation(positions, index, total) {
         duration: time,
         ease: "power1.inOut",
         motionPath: {
-            path: PATH,
-                    
+            path: path,
+
             alignOrigin: [0.5, 0.5],
             start: 0,
             end: 1.0 - (0.05 * (total))
@@ -131,7 +131,7 @@ function runSwitchAnimation(positions, index, total) {
         onComplete() {
             slide.style.zIndex = 0;
             positions[index] = 1.0 - (0.05 * (total));
-            runSwitchAnimation(positions, (index - 1), total);
+            runSwitchAnimation(path, section, positions, (index - 1), total);
         }
     })
 }
@@ -149,7 +149,7 @@ export class Experience extends React.Component {
         super(props)
 
         this.state = {
-            positions: [0.9, 0.95, 1.0]
+            positions: this.props.positions
         }
     }
 
@@ -158,22 +158,27 @@ export class Experience extends React.Component {
      */
     componentDidMount() {
 
-        const elements = document.getElementsByClassName("experience");
-        
-        
+        const section = this.props.section;
+        const path = this.props.path;
+        const delay = this.props.delay
+
+        const elements = document.getElementsByClassName("exp" + section);
+
+
         const positions = this.state.positions;
         const total = this.props.workplaces.length - 1;
         for (let i = total; i >= 0; i--) {
             gsap.to(elements[i], {
                 motionPath: {
-                    path: PATH,
+                    path: path,
                     alignOrigin: [0.5, 0.5],
                     start: 0,
                     end: this.state.positions[i],
                 },
+                delay: delay,
                 onComplete() {
                     if (i == (total)) {
-                        runSwitchAnimation(positions, i, total);
+                        runSwitchAnimation(path, section, positions, i, total);
                     }
                 }
             })
@@ -186,14 +191,14 @@ export class Experience extends React.Component {
                     top: "12%",
                 },
             })
-        
+
             elements[i].addEventListener("mouseenter", () => {
                 console.log(positions[i])
-                if(positions[i] <= 0.955)
+                if (positions[i] <= 0.955)
                     hoverAnimation.play()
             });
             elements[i].addEventListener("mouseleave", () => hoverAnimation.reverse());
-        
+
         }
     }
 
@@ -205,10 +210,13 @@ export class Experience extends React.Component {
 
         const cards = [];
         const workplaces = this.props.workplaces;
+        const section = this.props.section;
 
         workplaces.forEach((item, index) => {
             cards.push(
                 <ExperienceCard
+                    rightOriented={this.props.rightOriented}
+                    section={section}
                     companyName={item.companyName}
                     companyDescription={item.companyDescription}
                     companyWebsite={item.companyWebsite}
@@ -221,20 +229,48 @@ export class Experience extends React.Component {
             )
         })
 
-        
+        let left;
+        let right;
+
+        if(this.props.rightOriented) {
+
+            left = 
+            <div className="experience-text-wrapper">
+                <div className="experience-inner-wrapper" style={{
+                    marginLeft: "5vw"
+                }}>
+                    <a className="sfproSB fade">{this.props.title}</a>
+                    {this.props.description}
+                </div>
+            </div>
+    
+            right = 
+            <div className="experience-slide-wrapper">
+                {cards}
+            </div>
+        } else {
+
+            right = 
+            <div className="experience-text-wrapper">
+                <div className="experience-inner-wrapper" style={{
+                    marginRight: "5vw",
+                    textAlign: "right"
+                }}>
+                    <a className="sfproSB fade">{this.props.title}</a>
+                    {this.props.description}
+                </div>
+            </div>
+    
+            left = 
+            <div className="experience-slide-wrapper">
+                {cards}
+            </div>
+        }
 
         return (
             <div className="experience-wrapper">
-                <div className="experience-text-wrapper">
-                    <div className="experience-inner-wrapper">
-                        <a className="sfproSB fade">Experience</a>
-                        <p className="sfproB fade">View the previous companies I've worked at, having grown my skills and teamwork abilities<br /><br />Expand a card by clicking its header</p>
-                    </div>
-
-                </div>
-                <div className="experience-slide-wrapper">
-                    {cards}
-                </div>
+                {left}
+                {right}
             </div>
         )
     }

@@ -50,13 +50,25 @@ root.render(
 
       </div>
 
-      {/* <ProjectList>
+      <ProjectList>
 
       </ProjectList>
 
-      <AboutMe /> */}
+      <AboutMe />
 
-      {/* <Experience
+      <Experience
+        section="1"
+        rightOriented={true}
+        title={"Experience"}
+        positions={[0.9, 0.95, 1.0]}
+        description={
+          <p className="sfpro fade">
+            <span className="sfproB">Previous companies I've worked at</span><br/>
+            places where I've grown my skills and teamwork abilities<br/>
+            Expand a card by clicking its header
+          </p>
+        }
+        path={"M66.11101,92.425 C64.52401,152.421 69.41501,263.969 148.57201,273.289 222.97701,282.015 456.15401,266.255 504.19601,104 536.46901,-5 430.00901,-19.944 296.79801,-4.688 137.93201,13.505 81.58701,80.47 66.83801,92.604"}
         workplaces={[
           {
             companyName: "Tippett Studios",
@@ -90,13 +102,79 @@ Investigated the feasibility to customize Wix website templates to improve the o
             myRole: "Intern",
           },
 
-        ]}> */}
+        ]}>
 
-      {/* </Experience>
+      </Experience>
+
+      <Experience
+        section="2"
+        delay={2.5}
+        rightOriented={false}
+        positions={[0.85, 0.9, 0.95, 1.0]}
+        title={"Coursework"}
+        description={
+          <p className="sfpro fade">
+            <span className="sfproB">Relevant classes I've taken</span><br/>
+            Expand a class by clicking on the card's header
+          </p>
+        }
+        
+        path={"M -66.111 92.425 C -64.524 152.421 -69.415 263.969 -148.572 273.289 C -222.977 282.015 -456.154 266.255 -504.196 104 C -536.469 -5 -430.009 -19.944 -296.798 -4.688 C -137.932 13.505 -81.587 80.47 -66.838 92.604"}
+        workplaces={[
+          {
+            companyName: "Algorithms and Data Structures",
+            companyDescription: "CS2420 - University of Utah",
+            companyWebsite: "https://www.tippett.com/",
+            yearsWorked: "2022-2023",
+            myContributions: 
+`Built visual effect props for an Academy Award Winning CGI and special effects production company\n
+Assisted in the creation of the stop-motion animated feature film, Mad God\n
+Worked alongside the most creative minds in animated filmmaking`,
+            myRole: "Intern",
+          },
+          {
+            companyName: "Software Practices 1",
+            companyDescription: "CS3500",
+            companyWebsite: "https://www.rodinaconsulting.com/",
+            yearsWorked: "2023-2023",
+            myContributions: 
+`Trained non-technical team members in understanding the functionalities of company APIs\n
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+            myRole: "Computer Consultant",
+          },
+          {
+            companyName: "Autonomous Driving",
+            companyDescription: "ROAR at UC Berkeley",
+            companyWebsite: "https://www.rodinaconsulting.com/",
+            yearsWorked: "2020-2021",
+            myContributions: 
+`Trained non-technical team members in understanding the functionalities of company APIs\n
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+            myRole: "Computer Consultant",
+          },
+          {
+            companyName: "Robotics",
+            companyDescription: "Berkeley City College",
+            companyWebsite: "https://www.rodinaconsulting.com/",
+            yearsWorked: "2020-2021",
+            myContributions: 
+`Trained non-technical team members in understanding the functionalities of company APIs\n
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+            myRole: "Computer Consultant",
+          },
+        ]}>
+
+      </Experience>
 
       <Education></Education>
 
-      <Overview></Overview> */}
+      <Overview></Overview>
 
 
     </div>
