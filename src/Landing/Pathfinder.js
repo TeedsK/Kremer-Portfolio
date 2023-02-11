@@ -1,7 +1,9 @@
-import React from "react";
+
 import { gsap } from "gsap";
 import { Queue } from './Queue.js';
 import { RowPane } from "./PathfinderRow.js";
+import React, { useState, useRef } from "react";
+
 
 let GRID_CONTAINER = null;
 
@@ -44,6 +46,190 @@ function delay(time) {
 }
 
 
+export const PathfinderGrid = () => {
+    const gridRef = useRef(null);
+    const nodeRefs = useRef([]);
+    const [gridArray, setGridArray] = useState([]);
+
+    const createGrid = () => {
+        // Create a 2D array representing the grid
+        let grid = [];
+        let count = 0;
+
+        for (let i = 0; i < 10; i++) {
+            let row = [];
+            for (let j = 0; j < 10; j++) {
+                row.push(
+                    {
+                        index: count,
+                        x: j,
+                        y: i,
+                        isWall: false,
+                        isStart: false,
+                        isEnd: false,
+                    });
+                count++;
+            }
+            grid.push(row);
+        }
+        setGridArray(grid);
+    };
+
+    const algorithm = (start, end) => {
+        let count = 0;
+        let openSet = new Queue();
+        openSet.add([0, count, start]);
+
+        let parent = new WeakMap();
+        let gScore = new WeakMap();
+
+        for (let i = 0; i < gridArray.length; i++) {
+            for (let k = 0; k < gridArray[i].length; k++) {
+                gScore.set(gridArray[i][k], Infinity);
+            }
+        }
+
+        gScore.set(start, 0);
+        let fScore = new WeakMap();
+
+        for (let i = 0; i < gridArray.length; i++) {
+            for (let k = 0; k < gridArray[i].length; k++) {
+                fScore.set(gridArray[i][k], Infinity);
+            }
+        }
+
+        fScore.set(start, calculateHValue(start, end));
+
+        let openSetHash = [start];
+        while (!(openSet.isEmpty())) {
+
+            let current = openSet.get_priority()[2];
+            openSetHash.splice(openSetHash.indexOf(current), 1)
+
+            if (current == end) {
+                // generate_best_path
+                // create_best_path_visual
+                //end.setAsEnd()
+                //end.udpdate
+            }
+
+            for (const neighbor of getNeighbors(current)) {
+
+                let tempGScore = gScore.get(current) + 1;
+
+                if (tempGScore < gScore.get(neighbor)) {
+                    parent.set(neighbor, tempGScore);
+                    gScore.set(neighbor, tempGScore);
+                    fScore.set(neighbor, tempGScore + calculateHValue(neighbor, end));
+                    if (!(neighbor in openSetHash)) {
+                        count += 1;
+                        openSet.add([fScore.get(neighbor), count, neighbor]);
+                        openSetHash.push(neighbor);
+                    }
+                }
+            }
+        }
+    }
+
+    const getNeighbors = (node) => {
+        let neighbors = []
+        const x = node.x;
+        const y = node.y;
+
+        //below
+        if (x < (gridArray.length - 1) && !(gridArray[x + 1][y].isWall))
+            neighbors.push(gridArray[x + 1][y])
+
+        //above
+        if (x > 0 && !(gridArray[x - 1][y].isWall))
+            neighbors.push(gridArray[x - 1][y])
+
+        //right
+        if (y < (gridArray[0].length - 1) && !(gridArray[x][y + 1].isWall))
+            neighbors.push(gridArray[x][y + 1])
+
+        //left
+        if (y > 0 && !(gridArray[x][y - 1].isWall))
+            neighbors.push(gridArray[x][y - 1])
+
+        return neighbors
+    }
+
+    const createRandomMaze = () => {
+        for (let i = 0; i < gridArray.length - 2; i += 2) {
+            for (let x = 0; x < gridArray[i].length - 2; x += 2) {
+                gridArray[i][x].set_as_wall();
+
+                let ran = Math.random();
+                if (ran < 0.444) {
+                    //West
+                    gridArray[i + 1][x].maze_reset();
+                } else if (ran < 0.85) {
+                    //North
+                    gridArray[i][x + 1].maze_reset();
+                } else {
+                    gridArray[i + 1][x].maze_reset();
+                    gridArray[i][x + 1].maze_reset();
+                }
+                gridArray[i + 2][x + 1].isWall = true;
+                gridArray[i + 1][x + 2].isWall = true;
+                gridArray[i][x + 2].isWall = true;
+                gridArray[i + 2][x].isWall = true;
+                gridArray[i + 2][x + 2].isWall = true;
+                //North West
+            }
+        }
+    }
+
+    const calculateHValue = (point1, point2) => {
+        let x1 = point1.x;
+        let y1 = point1.y;
+        let x2 = point2.x;
+        let y2 = point2.y;
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2)
+    }
+
+    const animateFinalPath = (nodePositions) => {
+        nodePositions.forEach((positions, index) => {
+            gsap.to(gridArray[positions.x][positions.y], {
+
+            })
+        })
+    }
+
+    createGrid();
+
+    return (
+        <>
+            <div ref={gridRef} style={
+                {
+                    position: "absolute",
+                    backgroundColor: 'orange',
+                    right: "0",
+                    width: "50vw",
+                    height: '100vh',
+                    // display: "grid",
+                    // gridTemplateColumns: "repeat(1vw, 1vw)"
+                }}>
+                {gridArray.map((row, rowIndex) => (
+                    <div key={rowIndex}>
+                        {row.map((node, nodeIndex) => {
+                            nodeRefs.current[rowIndex * row.length + nodeIndex] = React.createRef();
+                            console.log(rowIndex);
+                            return (
+                                <div
+                                    ref={nodeRefs.current[rowIndex * row.length + nodeIndex]}
+                                    key={nodeIndex}
+                                    style={{ backgroundColor: node.isWall ? 'black' : 'white', height: "20vw", width: "20vw" }}
+                                />
+                            );
+                        })}
+                    </div>
+                ))}
+            </div>
+        </>
+    );
+}
 
 
 export class Pathfinder extends React.Component {
@@ -61,8 +247,8 @@ export class Pathfinder extends React.Component {
      */
     componentDidMount() {
 
-        for(let i = 0; i < GRID.length; i++) {
-            for(let k = 0; k < GRID[i].length; k++) {
+        for (let i = 0; i < GRID.length; i++) {
+            for (let k = 0; k < GRID[i].length; k++) {
                 GRID[i][k].setSizeAnimation();
             }
         }
@@ -88,10 +274,10 @@ export class Pathfinder extends React.Component {
 
         let id = Math.floor(Math.random() * 1_000_000);
 
-        while(this.state.ids.has(id)) {
+        while (this.state.ids.has(id)) {
             id = Math.floor(Math.random() * 1_000_000);
         }
-        
+
         return id;
     }
 
@@ -126,10 +312,10 @@ export class Pathfinder extends React.Component {
         const width = vw(45) / vw(nodeSize);
         const height = vh(100) / (vw(nodeSize));
 
-        const ratioWidth =  (1.01)
-        const ratioHeight = (height/ vh(nodeSize) )
+        const ratioWidth = (1.01)
+        const ratioHeight = (height / vh(nodeSize))
 
-        console.log(ratioWidth +", " + ratioHeight);
+        console.log(ratioWidth + ", " + ratioHeight);
 
         const grid = this.generateGrid(height, width, nodeSize, ratioWidth, ratioHeight)
 
@@ -153,7 +339,7 @@ class Node {
     constructor(identity, row, col, width, scaleWidth, scaleHeight, total_rows, total_columns) {
         this.row = row
         this.col = col
-        this.identity = ("box-"+ identity)
+        this.identity = ("box-" + identity)
         this.x = row * width
         this.y = col * width
         this.color = EMPTY
@@ -257,16 +443,13 @@ class Node {
 
     setSizeAnimation() {
         this.size_animation = gsap.to(`#${this.identity}`,
-        {
-            duration: 0.25,
-            // borderRadius: '0.1vw',
-            width: `calc(${this.width}vw + 0.1vw)`, 
-            height: `calc(${this.width}vw + 0.1vw)`, 
-            // scale: 1,
-            // rotation: 0.01,
-            paused: true,
-            reversed: true
-        })
+            {
+                duration: 0.25,
+                width: `calc(${this.width}vw + 0.1vw)`,
+                height: `calc(${this.width}vw + 0.1vw)`,
+                paused: true,
+                reversed: true
+            })
     }
 
     /**
@@ -300,7 +483,7 @@ class Node {
             </div>;
 
 
-        
+
 
         // this.size_animation = gsap.to(this.node_child, 
         //     { 
@@ -314,30 +497,6 @@ class Node {
         return this.node;
     }
 
-
-    //Updates the nodes nearby
-    update_neighbors(grid) {
-        this.neighbors = []
-        //Node Below
-        if ((this.row < (this.total_rows - 1)) && !(grid[this.row + 1][this.col].get_wall())) {
-            this.neighbors.push(grid[this.row + 1][this.col])
-        }
-
-        //Node Above
-        if ((this.row > 0) && !(grid[this.row - 1][this.col].get_wall())) {
-            this.neighbors.push(grid[this.row - 1][this.col])
-        }
-
-        //Node Right
-        if ((this.col < this.total_columns - 1) && !(grid[this.row][this.col + 1].get_wall())) {
-            this.neighbors.push(grid[this.row][this.col + 1])
-        }
-
-        //Node Left
-        if ((this.col > 0) && !(grid[this.row][this.col - 1].get_wall())) {
-            this.neighbors.push(grid[this.row][this.col - 1])
-        }
-    }
 }
 
 
