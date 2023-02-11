@@ -117,6 +117,23 @@ export class Welcome extends React.Component {
             repeatMaze();
             
         })
+
+        const links = document.querySelectorAll(".hyper-links")
+        links.forEach((element, i) => {
+            element.addEventListener("mouseover", () => {
+                links.forEach((ele, k) => {
+                    if(i != k)
+                        ele.style.opacity = "0.6";
+                    else
+                    ele.style.opacity = "1";
+                })
+            }, false);
+            element.addEventListener("mouseout", () => {
+                links.forEach((ele, k) => {
+                    ele.style.opacity = "1";
+                })
+            }, false);
+        })
     }
 
     imgClick = (link) => {
@@ -134,10 +151,12 @@ export class Welcome extends React.Component {
                         <img src="/images/twitter.png" onClick={this.imgClick.bind(this, "https://twitter.com/TeedsTK")}></img>
                         <img src="/images/instagram.png" onClick={this.imgClick.bind(this, "https://www.instagram.com/theo.kremer/")}></img>
                     </div>
-                    <div className="hyper-links sfpro blue">
-                        <a>projects</a>
-                        <a>about me</a>
-                        <a>experience</a>
+                    <div className="hyper-links-wrapper sfpro blue">
+                        <a className="hyper-links">projects</a>
+                        <a className="hyper-links">about me</a>
+                        <a className="hyper-links">experience</a>
+                        <a className="hyper-links">education</a>
+                        <a className="hyper-links">overview</a>
                         <div className="resume-wrapper">
                             <p>resume</p>
                         </div>
