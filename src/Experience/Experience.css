@@ -17,15 +17,17 @@
 }
 
 .experience-text-wrapper a {
-    
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 9vh;
     transition: opacity 1s ease-in-out;
-    color: #1d1d1f;
+    /* color: #1d1d1f; */
 }
 
 
 .experience-text-wrapper p {
-    font-size: 2.5vh;
+    font-size: 2.2vh;
     margin: 0;
     transition: opacity 1s ease-in-out;
     color: #6f6f75;

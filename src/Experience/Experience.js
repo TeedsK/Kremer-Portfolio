@@ -239,7 +239,7 @@ export class Experience extends React.Component {
                 <div className="experience-inner-wrapper" style={{
                     marginLeft: "5vw"
                 }}>
-                    <a className="sfproSB fade">{this.props.title}</a>
+                    <a style={{backgroundImage: `linear-gradient(45deg, ${this.props.gradient[0]}, ${this.props.gradient[1]})`}} className="sfproSB fade">{this.props.title}</a>
                     {this.props.description}
                 </div>
             </div>
@@ -256,7 +256,7 @@ export class Experience extends React.Component {
                     marginRight: "5vw",
                     textAlign: "right"
                 }}>
-                    <a className="sfproSB fade">{this.props.title}</a>
+                    <a style={{backgroundImage: `linear-gradient(45deg, ${this.props.gradient[0]}, ${this.props.gradient[1]})`}} className="sfproSB fade">{this.props.title}</a>
                     {this.props.description}
                 </div>
             </div>
