@@ -25,6 +25,8 @@ let start_node = null;
 let end_node = null;
 let GRID = null
 let STARTED = false;
+let InViewport = true;
+let RUNNING = false;
 
 /**
  * This class represents the Welcome section on the landing page of the portfolio site
@@ -49,83 +51,85 @@ function getRandom(min, max) {
 }
 
 function repeatMaze() {
-    if(start_node != null) {
-        start_node.reset()
-        start_node = null
-    }
-
-    if(end_node != null) {
-        end_node.reset();
-        end_node = null;
-    }
-
-    create_random_maze_binary(function() {
-        for(let i = 0; i < 2; i++) {
-
-            let x = null;
-            let y = getRandom(10, GRID[0].length - 2);
-
-            if(i == 0) {
-                x = getRandom(2, (GRID.length - 2) / 2)
-                GRID[x][y].set_as_start();
-                start_node = GRID[x][y];
-            } else {
-                x = getRandom((GRID.length - 2) / 2, (GRID.length - 10))
-                GRID[x][y].set_as_end();
-                end_node = GRID[x][y];
-            }
-            GRID[x][y].update();
+    if(InViewport) {
+        RUNNING = true;
+        if (start_node != null) {
+            start_node.reset()
+            start_node = null
         }
-
-        start_pathfinder();
-    });
-
     
+        if (end_node != null) {
+            end_node.reset();
+            end_node = null;
+        }
     
+        create_random_maze_binary(function () {
+            for (let i = 0; i < 2; i++) {
+    
+                let x = null;
+                let y = getRandom(10, GRID[0].length - 2);
+    
+                if (i == 0) {
+                    x = getRandom(2, (GRID.length - 2) / 2)
+                    GRID[x][y].set_as_start();
+                    start_node = GRID[x][y];
+                } else {
+                    x = getRandom((GRID.length - 2) / 2, (GRID.length - 10))
+                    GRID[x][y].set_as_end();
+                    end_node = GRID[x][y];
+                }
+                GRID[x][y].update();
+            }
+    
+            start_pathfinder();
+        });   
+    } else {
+        RUNNING = false;
+    }
 }
 
 export class Welcome extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
     componentDidMount() {
+
+        window.addEventListener('scroll', this.handleScroll);
 
         GRID_CONTAINER = document.getElementById('grid_container');
         let nodeSize = 0.9;
-    
-            let width = vw(45) / vw(nodeSize);
-            let height = vh(110) / (vw(nodeSize));
-           
-            GRID = generate_grid(height, width, nodeSize)
+
+        let width = vw(45) / vw(nodeSize);
+        let height = vh(110) / (vw(nodeSize));
+
+        GRID = generate_grid(height, width, nodeSize)
 
         delay(3200).then(() => {
-            
-            gsap.fromTo("#grid_container", {
-                duration: 1.5,
-                css: {
-                    right: '-50%',
-                },
-                ease: "power2.out",
-            },
-            {
-                duration: 1.5,
-                css: {
-                    right: '-1%',
-                },
-                ease: "power2.out",
-            }
+
+            gsap.to("#grid_container", {
+                    duration: 1,
+                    css: {
+                        right: '-1%',
+                    },
+                    ease: "power2.out",
+                }
             );
-            
+
             repeatMaze();
-            
+
         })
 
         const links = document.querySelectorAll(".hyper-links")
         links.forEach((element, i) => {
             element.addEventListener("mouseover", () => {
                 links.forEach((ele, k) => {
-                    if(i != k)
+                    if (i != k)
                         ele.style.opacity = "0.6";
                     else
-                    ele.style.opacity = "1";
+                        ele.style.opacity = "1";
                 })
             }, false);
             element.addEventListener("mouseout", () => {
@@ -140,10 +144,52 @@ export class Welcome extends React.Component {
         window.open(link, '_blank');
     }
 
+    /**
+     * Checks if an element is in the viewport
+     * 
+     * @param {*} className - the name of the class to check if it's in the viewport
+     */
+    checkIfInViewport = (name) => {
+
+        const element = document.getElementById(name);
+
+        const rect = element.getBoundingClientRect();
+
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+        const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+        const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+        const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+
+        if (vertInView && horInView) {
+            InViewport = true;
+            if(!RUNNING)
+                repeatMaze();
+        } else {
+            InViewport = false;
+        }
+
+    }
+
+    /**
+     * checks if the version will be unmomunted
+     */
+    componentWillUnmount() {
+        clearInterval(this.timeout);
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    /**
+     * handles if the viewport has been scrolled
+     */
+    handleScroll() {
+        this.checkIfInViewport("welcome-page");
+    }
+
     render() {
 
         return (
-            <div className="welcome-wrapper">
+            <div id='welcome-page' className="welcome-wrapper">
                 <div className="welcome-header">
                     <div className="social-links">
                         <img src="/images/linkedin.png" onClick={this.imgClick.bind(this, "https://www.linkedin.com/in/ttkremer/")}></img>
@@ -224,7 +270,7 @@ class Node {
     }
 
     update_maze() {
-        if(this.color != EMPTY) {
+        if (this.color != EMPTY) {
             this.size_animation.play();
             gsap.to(this.node_child, { duration: 0.1, backgroundColor: this.color })
         }
@@ -544,23 +590,23 @@ function reset_grid() {
         start_node = null;
         end_node = null;
         let count = 0;
-        for(let i = 0; i < GRID.length; i++) {
-            for(let k = 0; k < GRID[i].length; k+=5) {
-                
+        for (let i = 0; i < GRID.length; i++) {
+            for (let k = 0; k < GRID[i].length; k += 5) {
+
                 delay(count).then(() => {
-                    for(let j = k; j < k + 5; j++) {
+                    for (let j = k; j < k + 5; j++) {
                         let node = GRID[i][j]
                         if (node != null && !node.isEmpty()) {
                             node.reset();
                         }
                     }
                 })
-                count+=1;
+                count += 1;
             }
         }
         GRID.forEach(row => {
             row.forEach(node => {
-                
+
             });
         });
     }
@@ -592,7 +638,7 @@ function create_random_maze_binary(_callback) {
         for (let i = 0; i < GRID.length - 2; i += 2) {
             for (let x = 0; x < GRID[i].length - 2; x += 2) {
                 GRID[i][x].set_as_wall();
-    
+
                 let ran = Math.random();
                 if (ran < 0.444) {
                     //West
@@ -610,10 +656,10 @@ function create_random_maze_binary(_callback) {
                 GRID[i + 2][x].set_as_wall();
                 GRID[i + 2][x + 2].set_as_wall();
                 //North West
-    
+
             }
         }
-    
+
         let count = 0;
         let endX = GRID.length - 10;
         let endY = GRID[0].length - 10;
@@ -622,9 +668,9 @@ function create_random_maze_binary(_callback) {
                 delay(count).then(() => {
                     for (let a = 0; a <= 10; a++) {
                         for (let b = 0; b <= 10; b++) {
-                            if(i >= GRID.length)
+                            if (i >= GRID.length)
                                 continue;
-                            if((i + a) < GRID.length && (x + b) < GRID[i].length)
+                            if ((i + a) < GRID.length && (x + b) < GRID[i].length)
                                 GRID[i + a][x + b].update_maze();
                         }
                     }
@@ -632,26 +678,26 @@ function create_random_maze_binary(_callback) {
                 delay(count).then(() => {
                     for (let a = 0; a < 10; a++) {
                         for (let b = 0; b < 10; b++) {
-                            if(i >= GRID.length)
-                            continue;
+                            if (i >= GRID.length)
+                                continue;
                             // if(n != null)
                             // console.log(GRID);
                             let p1 = endX - (i - a);
                             let p2 = (endY - (x - b));
-                            if((p1 >= 0 && p1 < GRID.length) && (p2 >= 0 && p2 < GRID[i].length)) {
+                            if ((p1 >= 0 && p1 < GRID.length) && (p2 >= 0 && p2 < GRID[i].length)) {
                                 GRID[p1][p2].update_maze();
                             }
-    
+
                         }
                     }
                 });
                 count += 50;
             }
         }
-    
+
         delay(count).then(() => {
             _callback();
         })
     })
-    
+
 }
