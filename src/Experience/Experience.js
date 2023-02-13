@@ -3,11 +3,8 @@ import './Experience.css';
 import { gsap } from "gsap";
 
 function componanyLink(link) {
-    console.log(link);
     window.open(link, '_blank');
 }
-
-let PATH;
 
 /**
  * Creates a new experience card
@@ -39,101 +36,9 @@ function ExperienceCard(props) {
     return element;
 }
 
-/**
- * This function moves the cards up one by one
- * 
- * @param {*} positions - the current positions of the cards
- * @param {*} index - the index of the card which is currently being animated
- * @param {*} total - the total number of cards
- */
-function moveUp(path, section, positions, index, total) {
 
-    const slides = document.getElementsByClassName('exp' + section)
-
-    for (let i = 0; i < total + 1; i++) {
-        if (i != index) {
-            const startingPosition = positions[i];
-            const slide = slides[i];
-            gsap.to(slide, {
-                duration: 5,
-                ease: "power1.inOut",
-                motionPath: {
-                    path: path,
-                    alignOrigin: [0.5, 0.5],
-                    start: positions[i],
-                    end: positions[i] + 0.05
-                },
-                onUpdate() {
-                    positions[i] = startingPosition + (0.05 * this.ratio);
-                },
-                onComplete() {
-                    // positions[i] = positions[i] + 0.05;
-                    slide.style.zIndex = positions[i] / 0.05;
-                }
-            })
-        }
-    }
-}
-
-/**
- * This function switches the card that is in the front to move it to the back
- * 
- * @param {*} positions - the current positions of the cards
- * @param {*} index - the index of the card which should be moved to the back
- * @param {*} total - the total number of cards
- */
-function runSwitchAnimation(path, section, positions, index, total) {
-    if (index < 0) {
-        index = total
-    }
-    const slide = document.getElementsByClassName('exp' + section)[index];
-    const gradient = document.getElementsByClassName('exp-grad' + section)[index];
-    const time = 10;
-
-    moveUp(path, section, positions, index, total);
-    gsap.to(slide, {
-        delay: (time / 3),
-        css: {
-            zIndex: -1
-        }
-    })
-    gsap.to(slide, {
-        duration: 1,
-        scale: 0.25,
-        borderRadius: "50%",
-        outline: "0vw solid #393943",
-        width: "25vw",
-        height: "25vw",
-        yoyo: true,
-        repeatDelay: 5,
-        repeat: 1,
-        ease: "power1.inOut",
-    })
-    gsap.to(gradient, {
-        duration: 1,
-        borderRadius: "50%",
-        opacity: 1,
-        yoyo: true,
-        repeatDelay: 5,
-        repeat: 1,
-        ease: "power1.inOut",
-    })
-    gsap.to(slide, {
-        duration: time,
-        ease: "power1.inOut",
-        motionPath: {
-            path: path,
-
-            alignOrigin: [0.5, 0.5],
-            start: 0,
-            end: 1.0 - (0.05 * (total))
-        },
-        onComplete() {
-            slide.style.zIndex = 0;
-            positions[index] = 1.0 - (0.05 * (total));
-            runSwitchAnimation(path, section, positions, (index - 1), total);
-        }
-    })
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
 }
 
 /**
@@ -149,25 +54,163 @@ export class Experience extends React.Component {
         super(props)
 
         this.state = {
-            positions: this.props.positions
+            positions: this.props.positions,
+            path: this.props.path,
+            section: this.props.section,
+            delay: this.props.delay,
+            total : this.props.workplaces.length,
+            highlighted: -1,
         }
     }
+
+    rushCardToFront = (index) => {
+
+        this.setState({
+            highlighted: index
+        })
+
+        const elements = document.getElementsByClassName("exp" + this.state.section);
+        const positions = this.state.positions;
+
+        console.log(elements);
+
+        gsap.to(elements[index], {
+            duration: 0.5,
+            ease: "power1.inOut",
+            css: {
+                top: "10%",
+            },
+        })
+    
+        for(let i = 0; i < positions.length; i++) {
+            if(positions[i] != positions[index] && positions[i] >= 0.95) {
+                this.runSwitchAnimation(i, 2, true)
+            }
+        }
+    }
+
+    runSwitchAnimation = (index, customDuration) => {
+        if (index < 0) {
+            index = this.state.total - 1
+        }
+
+        const path = this.state.path;
+        const section = this.state.section;
+        const positions = this.state.positions;
+        const total = this.state.total - 1;
+
+        const slide = document.getElementsByClassName('exp' + section)[index];
+        const gradient = document.getElementsByClassName('exp-grad' + section)[index];
+        const time = customDuration ? customDuration : 5;
+        const nextAnimation = () => {this.runSwitchAnimation((index - 1))};
+
+        positions[index] = 0;
+    
+        this.moveUp(index, customDuration);
+    
+        gsap.to(slide, {
+            delay: (time / 3),
+            css: {
+                zIndex: -1
+            }
+        })
+        gsap.to(slide, {
+            duration: 0.65,
+            scale: 0.25,
+            borderRadius: "50%",
+            outline: "0vw solid #393943",
+            width: "25vw",
+            height: "25vw",
+            yoyo: true,
+            repeatDelay: (time / 2),
+            repeat: 1,
+            ease: "power1.inOut",
+        })
+        gsap.to(gradient, {
+            duration: 0.65,
+            borderRadius: "50%",
+            opacity: 1,
+            yoyo: true,
+            repeatDelay: (time / 2),
+            repeat: 1,
+            ease: "power1.inOut",
+        })
+        gsap.to(slide, {
+            duration: time,
+            ease: "power1.inOut",
+            motionPath: {
+                path: path,
+    
+                alignOrigin: [0.5, 0.5],
+                start: 0,
+                end: 1.0 - (0.05 * (total))
+            },
+            onComplete() {
+                slide.style.zIndex = 0;
+                positions[index] = 1.0 - (0.05 * (total));
+                nextAnimation();
+            }
+        })
+    }
+
+    moveUp = (index, durationCustom, _callback) => {
+
+        const positions = this.state.positions;
+        const path = this.state.path;
+        const section = this.state.section;
+        const total = this.state.total;
+
+        const slides = document.getElementsByClassName('exp' + section)
+        const duration = durationCustom ? (durationCustom / 2) : 2.5;
+    
+        for (let i = 0; i < total + 1; i++) {
+            if (i != index) {
+                const startingPosition = positions[i];
+                const slide = slides[i];
+                if(slide != undefined) {
+                    gsap.to(slide, {
+                        duration: duration,
+                        ease: "power1.inOut",
+                        motionPath: {
+                            path: path,
+                            alignOrigin: [0.5, 0.5],
+                            start: positions[i],
+                            end: positions[i] + 0.05
+                        },
+                        onUpdate() {
+                            positions[i] = startingPosition + (0.05 * this.ratio);
+                        },
+                        onComplete() {
+                            // positions[i] = positions[i] + 0.05;
+                            slide.style.zIndex = positions[i] / 0.05;
+                            if(_callback && positions[i] >= 1)
+                                _callback()
+                        }
+                    })
+                }
+                
+            }
+        }
+    }
+
 
     /**
      * 
      */
     componentDidMount() {
 
-        const section = this.props.section;
-        const path = this.props.path;
-        const delay = this.props.delay
+        const positions = this.state.positions;
+        const section = this.state.section;
+        const path = this.state.path;
+        const delay = this.state.delay;
 
         const elements = document.getElementsByClassName("exp" + section);
+        const total = this.props.workplaces.length;
 
+        for (let i = total - 1; i >= 0; i--) {
 
-        const positions = this.state.positions;
-        const total = this.props.workplaces.length - 1;
-        for (let i = total; i >= 0; i--) {
+            const startAnimation = () => {this.runSwitchAnimation(i)};
+
             gsap.to(elements[i], {
                 motionPath: {
                     path: path,
@@ -177,8 +220,8 @@ export class Experience extends React.Component {
                 },
                 delay: delay,
                 onComplete() {
-                    if (i == (total)) {
-                        runSwitchAnimation(path, section, positions, i, total);
+                    if (i == (total - 1)) {
+                        startAnimation();
                     }
                 }
             })
@@ -188,17 +231,21 @@ export class Experience extends React.Component {
                 duration: 0.5,
                 ease: "power1.inOut",
                 css: {
-                    top: "12%",
+                    top: "16%",
                 },
             })
 
+            const clickAnimation = () => {
+                this.rushCardToFront(elements, path, section, positions, i);
+            }
+
             elements[i].addEventListener("mouseenter", () => {
-                console.log(positions[i])
                 if (positions[i] <= 0.955)
                     hoverAnimation.play()
             });
             elements[i].addEventListener("mouseleave", () => hoverAnimation.reverse());
 
+            elements[i].addEventListener("click", () => clickAnimation())
         }
     }
 
@@ -210,7 +257,7 @@ export class Experience extends React.Component {
 
         const cards = [];
         const workplaces = this.props.workplaces;
-        const section = this.props.section;
+        const section = this.state.section;
 
         workplaces.forEach((item, index) => {
             cards.push(
@@ -232,6 +279,13 @@ export class Experience extends React.Component {
         let left;
         let right;
 
+        let colors = ""
+        this.props.gradient.forEach((color) => {
+            colors = colors + ", " + color
+        })
+
+        console.log(colors);
+
         if(this.props.rightOriented) {
 
             left = 
@@ -239,7 +293,7 @@ export class Experience extends React.Component {
                 <div className="experience-inner-wrapper" style={{
                     marginLeft: "5vw"
                 }}>
-                    <a style={{backgroundImage: `linear-gradient(45deg, ${this.props.gradient[0]}, ${this.props.gradient[1]})`}} className="sfproSB fade">{this.props.title}</a>
+                    <a style={{backgroundImage: `linear-gradient(45deg ${colors})`}} className="sfproSB fade">{this.props.title}</a>
                     {this.props.description}
                 </div>
             </div>
@@ -256,7 +310,7 @@ export class Experience extends React.Component {
                     marginRight: "5vw",
                     textAlign: "right"
                 }}>
-                    <a style={{backgroundImage: `linear-gradient(45deg, ${this.props.gradient[0]}, ${this.props.gradient[1]})`}} className="sfproSB fade">{this.props.title}</a>
+                    <a style={{backgroundImage: `linear-gradient(45deg ${colors})`}} className="sfproSB fade">{this.props.title}</a>
                     {this.props.description}
                 </div>
             </div>
