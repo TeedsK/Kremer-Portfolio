@@ -61,10 +61,10 @@ root.render(
         rightOriented={true}
         title={"Experience"}
         positions={[0.9, 0.95, 1.0]}
-        gradient={['#85a3ff', '#4a7dff']}
+        gradient={['#4e54c8', '#8f94fb']}
         description={
           <p className="sfpro fade">
-            <span className="sfproB">Companies that have shaped my skills and teamwork</span><br/>
+            <span style={{fontSize: "1.35vw", color: 'black'}} className="sfproB">Companies that shaped my skills and teamwork</span><br/>
             Click on a card to learn about the companies where I honed my computer science expertise and developed valuable collaboration skills.
           </p>
         }
@@ -109,19 +109,19 @@ Investigated the feasibility to customize Wix website templates to improve the o
       <Experience
         section="2"
         delay={2.5}
-        rightOriented={false}
+        rightOriented={true}
         positions={[0.85, 0.9, 0.95, 1.0]}
         title={"Coursework"}
-        gradient={['#85a3ff', '#4a7dff']}
+        gradient={['#00c6ff', '#0072ff']}
           
         description={
           <p className="sfpro fade">
-            <span className="sfproB">Classes that have fueled my growth</span><br/>
+            <span style={{fontSize: "1.35vw", color: 'black'}} className="sfproB">Classes that have fueled my growth</span><br/>
             Explore the classes I've taken that have contributed to my knowledge and skillset by clicking on a card header.
           </p>
         }
-        
-        path={"M -66.111 92.425 C -64.524 152.421 -69.415 263.969 -148.572 273.289 C -222.977 282.015 -456.154 266.255 -504.196 104 C -536.469 -5 -430.009 -19.944 -296.798 -4.688 C -137.932 13.505 -81.587 80.47 -66.838 92.604"}
+        path={"M66.11101,92.425 C64.52401,152.421 69.41501,263.969 148.57201,273.289 222.97701,282.015 456.15401,266.255 504.19601,104 536.46901,-5 430.00901,-19.944 296.79801,-4.688 137.93201,13.505 81.58701,80.47 66.83801,92.604"}
+        // path={"M -66.111 92.425 C -64.524 152.421 -69.415 263.969 -148.572 273.289 C -222.977 282.015 -456.154 266.255 -504.196 104 C -536.469 -5 -430.009 -19.944 -296.798 -4.688 C -137.932 13.505 -81.587 80.47 -66.838 92.604"}
         workplaces={[
           {
             companyName: "Algorithms and Data Structures",
