@@ -1,0 +1,132 @@
+.elements-slide-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    /* overflow: hidden; */
+}
+
+.element-slide {
+    float: left;
+    /* background-color: orange; */
+    margin-right: 1vw;
+    min-width: 100vw;
+    width: 100vw;
+}
+
+.element-slide-switcher-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5vw;
+    height: 100%;
+    z-index: 200;
+    /* background-color: green; */
+}
+
+.slides-wrapper {
+    position: relative;
+}
+
+.experience-arrow-wrapper {
+    width: 3vw;
+    height: 3vw;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    /* background-color: rgba(0,0,0,0.2); */
+    /* pointer-events: none; */
+    cursor: pointer;
+    z-index: 101;
+}
+
+.experiences-arrow-animation {
+    display: block;
+    margin: auto;
+    pointer-events:inherit;
+    cursor: pointer;
+    width: 3vw;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.experience-cursor-wrapper {
+    position: absolute;
+    /* background-color: rgba(234,87,123,0.2); */
+    width: 3vw;
+    height: 3vw;
+    pointer-events: all;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#egIWRvPa5dV1{
+    pointer-events: all;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+.exp-ar-ani {
+    transition: all 333.3333333333334ms;
+    transition-timing-function: cubic- bezier(0.77, 0, 0.175, 1);
+}
+
+#egIWRvPa5dV1:hover #egIWRvPa5dV2_to {
+    transform: translate(223.208275px,150px)
+}
+
+
+#egIWRvPa5dV1:hover #egIWRvPa5dV2_ts {
+    transform: scale(0.6,0.6);
+}
+
+#egIWRvPa5dV1:hover #egIWRvPa5dV2 {
+    stroke-width: 9;
+}
+
+
+#egIWRvPa5dV1:hover #egIWRvPa5dV3 {
+    stroke-dashoffset: 0;
+}
+
+
+@keyframes egIWRvPa5dV2_to__to {
+    from { 
+        transform: translate(82.819275px, 150px); 
+    } 
+    to {
+        transform: translate(223.208275px,150px)
+    }
+} 
+
+@keyframes egIWRvPa5dV2_ts__ts {
+    from { 
+        transform: scale(0.895743, 0.895743);
+    } 
+    to {
+        transform: scale(0.6,0.6);
+    }
+} 
+
+@keyframes egIWRvPa5dV2_s_w {
+    from { 
+        stroke-width: 6;
+    } 
+    to {
+        stroke-width: 9;
+    }
+} 
+
+@keyframes egIWRvPa5dV3_s_do {
+    from {
+        stroke-dashoffset: 303.42;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}

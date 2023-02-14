@@ -1,6 +1,7 @@
 import React from "react";
 import './Experience.css';
 import { gsap } from "gsap";
+import { Parallax } from 'react-scroll-parallax';
 
 function componanyLink(link) {
     window.open(link, '_blank');
@@ -15,9 +16,7 @@ function componanyLink(link) {
 function ExperienceCard(props) {
 
     const element =
-        <div className={`fade exp${props.section} experience`} style={{
-            right: (props.rightOriented ? "100" : "0")
-        }}>
+        <div className={`exp${props.section} experience`}>
             <div className={`exp-grad${props.section} experience-gradient exp-grad-${props.index}`} />
             <div className="experience-header">
                 <a className="sfproB experience-company-name">{props.companyName}</a>
@@ -58,7 +57,7 @@ export class Experience extends React.Component {
             path: this.props.path,
             section: this.props.section,
             delay: this.props.delay,
-            total : this.props.workplaces.length,
+            total: this.props.workplaces.length,
             highlighted: -1,
         }
     }
@@ -81,9 +80,9 @@ export class Experience extends React.Component {
                 top: "10%",
             },
         })
-    
-        for(let i = 0; i < positions.length; i++) {
-            if(positions[i] != positions[index] && positions[i] >= 0.95) {
+
+        for (let i = 0; i < positions.length; i++) {
+            if (positions[i] != positions[index] && positions[i] >= 0.95) {
                 this.runSwitchAnimation(i, 2, true)
             }
         }
@@ -102,12 +101,12 @@ export class Experience extends React.Component {
         const slide = document.getElementsByClassName('exp' + section)[index];
         const gradient = document.getElementsByClassName('exp-grad' + section)[index];
         const time = customDuration ? customDuration : 5;
-        const nextAnimation = () => {this.runSwitchAnimation((index - 1))};
+        const nextAnimation = () => { this.runSwitchAnimation((index - 1)) };
 
         positions[index] = 0;
-    
+
         this.moveUp(index, customDuration);
-    
+
         gsap.to(slide, {
             delay: (time / 3),
             css: {
@@ -140,7 +139,7 @@ export class Experience extends React.Component {
             ease: "power1.inOut",
             motionPath: {
                 path: path,
-    
+
                 alignOrigin: [0.5, 0.5],
                 start: 0,
                 end: 1.0 - (0.05 * (total))
@@ -162,12 +161,12 @@ export class Experience extends React.Component {
 
         const slides = document.getElementsByClassName('exp' + section)
         const duration = durationCustom ? (durationCustom / 2) : 2.5;
-    
+
         for (let i = 0; i < total + 1; i++) {
             if (i != index) {
                 const startingPosition = positions[i];
                 const slide = slides[i];
-                if(slide != undefined) {
+                if (slide != undefined) {
                     gsap.to(slide, {
                         duration: duration,
                         ease: "power1.inOut",
@@ -183,16 +182,17 @@ export class Experience extends React.Component {
                         onComplete() {
                             // positions[i] = positions[i] + 0.05;
                             slide.style.zIndex = positions[i] / 0.05;
-                            if(_callback && positions[i] >= 1)
+                            if (_callback && positions[i] >= 1)
                                 _callback()
                         }
                     })
                 }
-                
+
             }
         }
     }
 
+    
 
     /**
      * 
@@ -209,7 +209,7 @@ export class Experience extends React.Component {
 
         for (let i = total - 1; i >= 0; i--) {
 
-            const startAnimation = () => {this.runSwitchAnimation(i)};
+            const startAnimation = () => { this.runSwitchAnimation(i) };
 
             gsap.to(elements[i], {
                 motionPath: {
@@ -262,7 +262,6 @@ export class Experience extends React.Component {
         workplaces.forEach((item, index) => {
             cards.push(
                 <ExperienceCard
-                    rightOriented={this.props.rightOriented}
                     section={section}
                     companyName={item.companyName}
                     companyDescription={item.companyDescription}
@@ -276,55 +275,25 @@ export class Experience extends React.Component {
             )
         })
 
-        let left;
-        let right;
-
         let colors = ""
         this.props.gradient.forEach((color) => {
             colors = colors + ", " + color
         })
 
-        console.log(colors);
-
-        if(this.props.rightOriented) {
-
-            left = 
-            <div className="experience-text-wrapper">
-                <div className="experience-inner-wrapper" style={{
-                    marginLeft: "5vw"
-                }}>
-                    <a style={{backgroundImage: `linear-gradient(45deg ${colors})`}} className="sfproSB fade">{this.props.title}</a>
-                    {this.props.description}
-                </div>
-            </div>
-    
-            right = 
-            <div className="experience-slide-wrapper">
-                {cards}
-            </div>
-        } else {
-
-            right = 
-            <div className="experience-text-wrapper">
-                <div className="experience-inner-wrapper" style={{
-                    marginRight: "5vw",
-                    textAlign: "right"
-                }}>
-                    <a style={{backgroundImage: `linear-gradient(45deg ${colors})`}} className="sfproSB fade">{this.props.title}</a>
-                    {this.props.description}
-                </div>
-            </div>
-    
-            left = 
-            <div className="experience-slide-wrapper">
-                {cards}
-            </div>
-        }
-
         return (
             <div className="experience-wrapper">
-                {left}
-                {right}
+                <div className="experience-text-wrapper">
+                    <div className="experience-inner-wrapper" style={{
+                        marginLeft: "5vw"
+                    }}>
+                        <a style={{ backgroundImage: `linear-gradient(45deg ${colors})` }} className="experience-text-wrapper-title sfproSB">{this.props.title}</a>
+                        <a className="experience-text-wrapper-subtitle sfproB">{this.props.subtitle}</a>
+                        <p>{this.props.description}</p>
+                    </div>
+                </div>
+                <div className="experience-slide-wrapper">
+                    {cards}
+                </div>
             </div>
         )
     }

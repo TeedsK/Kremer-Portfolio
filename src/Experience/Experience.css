@@ -7,25 +7,38 @@
 .experience-text-wrapper {
     width: 35%;
     height: 100%;
-    /* background-color: purple; */
     float: left;
+    position: sticky;
 }
 
 .experience-inner-wrapper {
     margin-top: 26vh;
+    position: relative;
+    height: auto;
+    float: none;
+    display: inline-block;
 }
 
-.experience-text-wrapper a {
+.experience-text-wrapper-title {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 9vh;
     transition: opacity 1s ease-in-out;
+    display: inline-block;
     /* color: #1d1d1f; */
 }
 
+.experience-text-wrapper-subtitle {
+    font-size: 2.3vh;
+    color: black;
+    margin-top: 0.15vw;
+    margin-bottom: 0.5vw;
+    display: inline-block;
+}
 
 .experience-text-wrapper p {
+    margin-top: 0.3vh;
     font-size: 2.2vh;
     margin: 0;
     transition: opacity 1s ease-in-out;
