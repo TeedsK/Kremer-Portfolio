@@ -67,6 +67,7 @@ export class ExperienceElements extends React.Component {
             elements.push(
                 <div key={i} className="element-slide">
                     <Experience
+                        callback={this.rotate}
                         section={experience.section}
                         positions={experience.positions}
                         gradient={experience.gradient}

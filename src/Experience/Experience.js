@@ -289,6 +289,9 @@ export class Experience extends React.Component {
                         <a style={{ backgroundImage: `linear-gradient(45deg ${colors})` }} className="experience-text-wrapper-title sfproSB">{this.props.title}</a>
                         <a className="experience-text-wrapper-subtitle sfproB">{this.props.subtitle}</a>
                         <p>{this.props.description}</p>
+                        <div onClick={this.props.callback} className="sfpro experience-next-slide-btn">
+                            <a>view next slide</a>
+                        </div>
                     </div>
                 </div>
                 <div className="experience-slide-wrapper">
