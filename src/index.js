@@ -105,10 +105,10 @@ root.render(
           },
           {
             section: "2",
-            delay: 2.5,
+            delay: 1,
             rightOriented: true,
             positions: [0.85, 0.9, 0.95, 1.0],
-            gradient: ['#00c6ff', '#0072ff'],
+            gradient: ['#ff9966', '#ff5e62'],
             title: "Coursework",
             subtitle: "Classes that have fueled my growth",
             description: "Explore the classes I've taken that have contributed to my knowledge and skillset by clicking on a card header",
@@ -162,6 +162,66 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 myRole: "Computer Consultant",
               },
             ]
+          },
+          {
+            section: "3",
+            delay: 2,
+            rightOriented: true,
+            positions: [0.85, 0.9, 0.95, 1.0],
+            gradient: ['#00d2ff', '#3a7bd5'],
+            title: "Clubs",
+            subtitle: "Extracurricular clubs I'm apart of",
+            description: "Explore the classes I've taken that have contributed to my knowledge and skillset by clicking on a card header",
+            path: "M66.11101,92.425 C64.52401,152.421 69.41501,263.969 148.57201,273.289 222.97701,282.015 456.15401,266.255 504.19601,104 536.46901,-5 430.00901,-19.944 296.79801,-4.688 137.93201,13.505 81.58701,80.47 66.83801,92.604",
+            workplaces: [
+              {
+                companyName: "Utah Student Robotics",
+                companyDescription: "USR at University of Utah",
+                companyWebsite: "https://www.tippett.com/",
+                yearsWorked: "2022-2023",
+                myContributions:
+                  `Built visual effect props for an Academy Award Winning CGI and special effects production company\n
+Assisted in the creation of the stop-motion animated feature film, Mad God\n
+Worked alongside the most creative minds in animated filmmaking`,
+                myRole: "Intern",
+              },
+              {
+                companyName: "Albany Robotics",
+                companyDescription: "Albany High School",
+                companyWebsite: "https://www.rodinaconsulting.com/",
+                yearsWorked: "2018-2022",
+                myContributions:
+                  `Trained non-technical team members in understanding the functionalities of company APIs\n
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+                myRole: "Computer Consultant",
+              },
+              {
+                companyName: "Data Science",
+                companyDescription: "University of Utah",
+                companyWebsite: "https://www.rodinaconsulting.com/",
+                yearsWorked: "2020-2021",
+                myContributions:
+                  `Trained non-technical team members in understanding the functionalities of company APIs\n
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+                myRole: "Computer Consultant",
+              },
+              {
+                companyName: "Programming Club",
+                companyDescription: "Albany High School",
+                companyWebsite: "https://www.rodinaconsulting.com/",
+                yearsWorked: "2019-2022",
+                myContributions:
+                  `Trained non-technical team members in understanding the functionalities of company APIs\n
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+                myRole: "Computer Consultant",
+              },
+            ]
           }
         ]}
       >
@@ -171,7 +231,6 @@ Investigated the feasibility to customize Wix website templates to improve the o
       <Education></Education>
 
       <Overview></Overview>
-
 
     </div >
   </ParallaxProvider >
