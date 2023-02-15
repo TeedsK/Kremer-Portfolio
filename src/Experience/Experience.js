@@ -1,7 +1,6 @@
 import React from "react";
 import './Experience.css';
 import { gsap } from "gsap";
-import { Parallax } from 'react-scroll-parallax';
 
 function componanyLink(link) {
     window.open(link, '_blank');

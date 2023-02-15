@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './fonts.css'
 import { Welcome } from './Landing/Welcome';
-import { Coding } from './Landing/Code';
 import { Project } from './Projects/Project'
 import { ProjectList } from './Projects/ProjectList';
 import { AboutMe } from './AboutMe/AboutMe'
@@ -14,6 +13,7 @@ import { Overview } from './Overview/Overview'
 import reportWebVitals from './reportWebVitals';
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { ParallaxProvider } from 'react-scroll-parallax';
+import { ContactMe } from './Contact/ContactMe';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -231,6 +231,8 @@ Investigated the feasibility to customize Wix website templates to improve the o
       <Education></Education>
 
       <Overview></Overview>
+
+      <ContactMe></ContactMe>
 
     </div >
   </ParallaxProvider >
