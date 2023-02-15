@@ -35,62 +35,17 @@ export class Overview extends React.Component {
         return (
             <div className="overview-wrapper">
                 <div className="overview-skills">
-                    <div className="overview-section overview-left">
-                        <OverviewSection
-                            title="Debugger"
-                            subtitle="Efficiently identifying and fixing errors within software"
-                            description=""
-                        />
-                    </div>
-                    <div className="overview-section overview-middle">
-                        <OverviewSection
-                            title="Full-Stack Developer"
-                            subtitle="Writing front and back end code"
-                            coloredTitle="Languages I Know"
-                            itemBlocks={[
-                                "Java",
-                                "Python",
-                                "C#",
-                                "PHP",
-                                "HTML",
-                                "CSS",
-                                "JavaScript",
-                                "React"
-                            ]}
-                        />
-                    </div>
-                    <div className="overview-section overview-right">
-                        <OverviewSection
-                            title="Designer"
-                            subtitle="Creating elegant appearances for users"
-                            description=""
-                        />
-                    </div>
-                </div>
-                <div className="overview-other-details">
-                    {/* <div className="sfproSB known-programming-languages">
-                        <a>Programming Languages I Know</a>
-                        <div className="known-languages-wrapper">
-                            <Language lang="Java"/>
-                            <Language lang="Python"/>
-                            <Language lang="C#"/>
-                            <Language lang="PHP"/>
-                            <Language lang="HTML"/>
-                            <Language lang="CSS"/>
-                            <Language lang="JavaScript"/>
-                            <Language lang="React"/>
+                    <div className="overview-section">
+                        <div className="ovw-left-wrapper">
+                            <a>Theo Kremer</a>
+                            <p>overview summary</p>
+                            <a>Full-Stack Developer</a>
+                            <p>stuff about being develop</p>
+                        </div>
+                        <div className="ovw-right-wrapper">
+
                         </div>
                     </div>
-                    <br/>
-                    <div className="sfproSB known-tools">
-                        <a>Resources I Use</a>
-                        <div className="known-tools-wrapper">
-                            <Language lang="Git"/>
-                            <Language lang="Adobe Photoshop"/>
-                            <Language lang="Adobe Illustrator"/>
-                            <Language lang="Git"/>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         )

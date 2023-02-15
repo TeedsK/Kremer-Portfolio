@@ -9,12 +9,31 @@
 .contact-me-header {
     width: 100%;
     height: 30%;
-    background-color: purple;
+    /* background-color: purple; */
+    position: relative;
+
 }
 
-/* .contact-me-header a {
+.contact-me-header a {
+    padding-top: 3vw;
+    font-size: 3.6vw;
 
-} */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-me-header p {
+    font-size: 1.3vw;
+    position: relative;
+    left: 50%;
+    width: 40vw;
+    text-align: center;
+    transform: translateX(-50%);
+    margin-top: 1vw;
+    color: #bcbcc2;
+}
 
 .contact-me-first-row {
     width: 100%;
@@ -23,11 +42,11 @@
 }
 
 .cnt-row {
-    display: -webkit-box;  
-    display: -ms-flexbox;  
-    display: -webkit-flex; 
-    display: flex;        
-  
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
     justify-content: center;
     align-items: center;
 }
@@ -40,8 +59,8 @@
 
 .contact-me-third-row {
     width: 100%;
-    height: 20%;
-    background-color: rgb(214, 251, 51);
+    height: 1%;
+    /* background-color: rgb(214, 251, 51); */
 }
 
 /* necessary to give position: relative to parent. */
@@ -59,6 +78,7 @@ input[type="text"] {
 
 .input-wrapper {
     float: left;
+    z-index: 2;
     /* margin: 40px 3%; */
     position: relative;
     /* necessary to give position: relative to parent. */
@@ -111,4 +131,152 @@ input[type="text"] {
 .seperator {
     margin-left: 2.5vw;
     margin-right: 2.5vw;
+}
+
+.message-send-btn {
+    z-index: 3;
+    width: 12vw;
+    height: 3vw;
+    color: white;
+    background-color: #0b83ff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    animation: btn-animation-width;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    animation-play-state: paused;
+}
+
+.msg-send-btn-text {
+    animation: btn-text-animation-margin;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    margin-left: 0vw;
+    animation-play-state: paused;
+}
+
+@keyframes btn-text-animation-margin {
+    0% {
+
+    }
+    100% {
+        margin-left: -1.5vw;
+    }
+}
+
+@keyframes btn-animation-width {
+    0% {
+        width: 12vw;
+    }
+
+    65% {
+        width: 14vw;
+        margin-left: 2vw;
+    }
+}
+
+.contact-airplane-animation {
+    width: 100%;
+    height: 100%;
+    top: -10vh;
+    position: absolute;
+    z-index: 1;
+}
+
+#cnt-msg-title {
+    white-space: pre;
+    display: inline-block;
+    animation: message-gradient;
+    animation-duration: 0.75s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.05s;
+    background: linear-gradient(40deg, #0b83ff 0%, #6081f2 50%, white 50%, white 100%);
+    background-size: 250% 250%;
+    background-position: 100%;
+    -webkit-background-clip: text;
+    /* background-repeat:   no-repeat; */
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    animation-play-state: paused;
+
+}
+
+@keyframes message-gradient {
+    0% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0%;
+    }
+}
+
+
+
+.cnt-btn-arw-wrapper {
+    width: 1.1vw;
+    height: 1.1vw;
+    margin-left: -12.5vw;
+    animation: btn-arrow-animation;
+    animation-duration: 0.75s;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    position: absolute;
+    animation-play-state: paused;
+}
+
+@keyframes btn-arrow-animation {
+    0% {
+        margin-left: -13vw;
+    }
+
+    100% {
+        margin-left: 8.4vw;
+    }
+}
+
+
+#bgIWRvPa5dV1 {
+    pointer-events: all;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    transition: all 333.3333333333334ms;
+    transition-timing-function: cubic- bezier(0.77, 0, 0.175, 1);
+
+}
+
+.message-send-btn:hover #bgIWRvPa5dV2_to {
+    transform: translate(223.208275px, 150px)
+}
+
+
+.message-send-btn:hover #bgIWRvPa5dV2_ts {
+    transform: scale(0.8, 0.8);
+}
+
+.message-send-btn:hover #bgIWRvPa5dV2 {
+    stroke-width: 26;
+}
+
+.message-send-btn:hover #bgIWRvPa5dV3 {
+    stroke-dashoffset: 0;
 }
