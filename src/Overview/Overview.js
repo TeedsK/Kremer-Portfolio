@@ -37,10 +37,10 @@ export class Overview extends React.Component {
                 <div className="overview-skills">
                     <div className="overview-section">
                         <div className="ovw-left-wrapper">
-                            <a>Theo Kremer</a>
-                            <p>overview summary</p>
-                            <a>Full-Stack Developer</a>
-                            <p>stuff about being develop</p>
+                            <a className="sfproB ovw-name">Theo Kremer</a>
+                            <p className="sfpro ovw-name-subtitle">overview summary</p>
+                            <a className="sfproB ovw-title">Full-Stack Developer</a>
+                            <p className="sfpro ovw-title-description">stuff about being develop</p>
                         </div>
                         <div className="ovw-right-wrapper">
 
