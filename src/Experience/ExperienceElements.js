@@ -3,69 +3,74 @@ import { Experience } from './Experience'
 import { gsap } from "gsap";
 import "./ExperienceElement.css"
 
+/**
+ * This class represents the container for the experience elements
+ * 
+ * @author Theo Kremer
+ */
 export class ExperienceElements extends React.Component {
 
+    /**
+     * the constructor for the experience elements object
+     * it initiates the state variables
+     * @param {*} props - the given properties
+     */
     constructor(props) {
         super(props);
 
+        const translations = [];
+
+        for(let i = 0; i < this.props.categories.length; i++) {
+            translations.push(100 * i);
+        }
+
         this.state = {
             index: 0,
-            translations: [],
+            translations: translations,
         }
     }
 
+    /**
+     * Rotates the experience card slides one to the right
+     */
     rotate = () => {
         const slides = document.getElementsByClassName("element-slide");
-        const index = this.state.index;
         const translations = this.state.translations;
 
-        if(index >= (slides.length - 1)) {
-            gsap.to(slides[index - 1], {
-                duration: 0,
-                transform: `translateX(${(100 * ((slides.length - 1)))}%)`,
-                ease: "power2.inOut"
-            })
-            translations[index - 1] = 100 * ((slides.length - 1));
-        } else if(index == 0) {
-            gsap.to(slides[1], {
-                duration: 0,
-                transform: `translateX(0%)`,
-                ease: "power2.inOut"
-            })
-            translations[1] = 0;
-        }
-
-        for(let i = index; i < slides.length; i++) {
+        for(let i = 0; i < slides.length; i++) {
+            
             const current = translations[i];
-            gsap.to(slides[i], {
-                duration: 1,
-                transform: `translateX(-${current + 100}%)`,
-                ease: "power2.inOut"
-            })
-            translations[i] = (current + 100);
-        }
 
-        if(index == slides.length - 1) {
-            gsap.to(slides[0], {
-                duration: 1,
-                transform: `translateX(-${0}%)`,
-                ease: "power2.inOut"
-            })
-            translations[0] = (0);
+            if(current < 0) {
+                gsap.to(slides[i], {
+                    duration: 0,
+                    transform: `translateX(${100 * (slides.length - 2)}vw)`,
+                    ease: "power2.inOut"
+                })
+                translations[i] = (100 * (slides.length - 2))
+            } else {
+
+                gsap.to(slides[i], {
+                    duration: 1,
+                    transform: `translateX(${current - 100}vw)`,
+                    ease: "power2.inOut"
+                })
+                translations[i] =(current - 100)
+            }
         }
-        
-        this.setState({
-            index: index >= (slides.length - 1) ? 0 : index + 1
-        })
     }
 
+    /**
+     * Renders the experience elements section
+     * @returns a container with all the experience cards
+     */
     render() {
 
         const elements = [];
 
         this.props.categories.forEach((experience, i) => {
             elements.push(
-                <div key={i} className="element-slide">
+                <div key={i} className="element-slide" style={{transform: `translateX(${this.state.translations[i]}vw)`}}>
                     <Experience
                         callback={this.rotate}
                         section={experience.section}
@@ -78,7 +83,6 @@ export class ExperienceElements extends React.Component {
                         workplaces={experience.workplaces}
                     />
                 </div>)
-            this.state.translations.push(0);
         })
 
         return (
