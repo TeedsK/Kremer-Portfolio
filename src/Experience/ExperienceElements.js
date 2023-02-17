@@ -3,8 +3,18 @@ import { Experience } from './Experience'
 import { gsap } from "gsap";
 import "./ExperienceElement.css"
 
+/**
+ * This class represents the container for the experience elements
+ * 
+ * @author Theo Kremer
+ */
 export class ExperienceElements extends React.Component {
 
+    /**
+     * the constructor for the experience elements object
+     * it initiates the state variables
+     * @param {*} props - the given properties
+     */
     constructor(props) {
         super(props);
 
@@ -20,6 +30,9 @@ export class ExperienceElements extends React.Component {
         }
     }
 
+    /**
+     * Rotates the experience card slides one to the right
+     */
     rotate = () => {
         const slides = document.getElementsByClassName("element-slide");
         const translations = this.state.translations;
@@ -47,6 +60,10 @@ export class ExperienceElements extends React.Component {
         }
     }
 
+    /**
+     * Renders the experience elements section
+     * @returns a container with all the experience cards
+     */
     render() {
 
         const elements = [];
