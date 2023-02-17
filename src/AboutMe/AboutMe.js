@@ -10,8 +10,6 @@ export class AboutMe extends React.Component {
     constructor(props) {
         super(props);
 
-        // const duration = 30;
-
         this.state = {
             lines: [],
             ids: ['traveler-sphere', 'ms-sphere', 'stop-motion-sphere', 'resale-sphere', 'video-editing-sphere'],
