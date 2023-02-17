@@ -8,79 +8,59 @@ export class ExperienceElements extends React.Component {
     constructor(props) {
         super(props);
 
-        this.translations = [];
+        const translations = [];
+
+        for(let i = 0; i < this.props.categories.length; i++) {
+            translations.push(100 * i);
+        }
 
         this.state = {
             index: 0,
-            translations: [],
+            translations: translations,
         }
     }
 
+    // updateTranslation = (i, amt) => {
+    //     this.setState(state => {
+    //       const translations = state.translations.map((item, j) => {
+    //         if (j === i) {
+    //           return amt;
+    //         } else {
+    //           return item;
+    //         }
+    //       });
+
+    //       return {
+    //         translations,
+    //       };
+    //     });
+    //   };
+
     rotate = () => {
         const slides = document.getElementsByClassName("element-slide");
-        const index = this.state.index;
+        const translations = this.state.translations;
 
-        console.log(index + " | " + this.translations);
-
-        //if at last element
-        if(index >= slides.length - 1) {
-            console.log('last element');
-            gsap.to(slides[0], {
-                duration: 0,
-                transform: `translateX(${(100 * (slides.length - 1))}%)`,
-                ease: "power2.inOut"
-            })
-            this.translations[0] = 100 * (slides.length - 1);
-        }
-
-
-        if(index > 0) {
-            gsap.to(slides[index - 1], {
-                duration: 0,
-                transform: `translateX(${(100 * (slides.length - 2))}%)`,
-                ease: "power2.inOut"
-            })
-            translations[index - 1] = 100 * (slides.length - 2);
-        }
-
-        // if(index >= (slides.length - 1)) {
-        //     gsap.to(slides[index - 1], {
-        //         duration: 0,
-        //         transform: `translateX(${(100 * ((slides.length - 1)))}%)`,
-        //         ease: "power2.inOut"
-        //     })
-        //     translations[index - 1] = 100 * ((slides.length - 1));
-        // } else if(index == 0) {
-        //     gsap.to(slides[1], {
-        //         duration: 0,
-        //         transform: `translateX(0%)`,
-        //         ease: "power2.inOut"
-        //     })
-        //     translations[1] = 0;
-        // }
-
-        for(let i = index; i < slides.length; i++) {
+        for(let i = 0; i < slides.length; i++) {
+            
             const current = translations[i];
-            gsap.to(slides[i], {
-                duration: 1,
-                transform: `translateX(${current - 100}%)`,
-                ease: "power2.inOut"
-            })
-            translations[i] = (current - 100);
-        }
 
-        // if(index == slides.length - 1) {
-        //     gsap.to(slides[0], {
-        //         duration: 1,
-        //         transform: `translateX(-${0}%)`,
-        //         ease: "power2.inOut"
-        //     })
-        //     translations[0] = (0);
-        // }
-        
-        this.setState({
-            index: index >= (slides.length - 1) ? 0 : index + 1
-        })
+            if(current < 0) {
+                gsap.to(slides[i], {
+                    duration: 0,
+                    transform: `translateX(${100 * (slides.length - 2)}vw)`,
+                    ease: "power2.inOut"
+                })
+                translations[i] = (100 * (slides.length - 2))
+            } else {
+
+                gsap.to(slides[i], {
+                    duration: 1,
+                    transform: `translateX(${current - 100}vw)`,
+                    ease: "power2.inOut"
+                })
+                translations[i] =(current - 100)
+            }
+        }
     }
 
     render() {
@@ -89,7 +69,7 @@ export class ExperienceElements extends React.Component {
 
         this.props.categories.forEach((experience, i) => {
             elements.push(
-                <div key={i} className="element-slide" style={{transform: `translateX(${i * 100}vw)`}}>
+                <div key={i} className="element-slide" style={{transform: `translateX(${this.state.translations[i]}vw)`}}>
                     <Experience
                         callback={this.rotate}
                         section={experience.section}
@@ -102,7 +82,6 @@ export class ExperienceElements extends React.Component {
                         workplaces={experience.workplaces}
                     />
                 </div>)
-            this.state.translations.push(i * 100);
         })
 
         return (
