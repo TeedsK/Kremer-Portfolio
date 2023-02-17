@@ -20,22 +20,6 @@ export class ExperienceElements extends React.Component {
         }
     }
 
-    // updateTranslation = (i, amt) => {
-    //     this.setState(state => {
-    //       const translations = state.translations.map((item, j) => {
-    //         if (j === i) {
-    //           return amt;
-    //         } else {
-    //           return item;
-    //         }
-    //       });
-
-    //       return {
-    //         translations,
-    //       };
-    //     });
-    //   };
-
     rotate = () => {
         const slides = document.getElementsByClassName("element-slide");
         const translations = this.state.translations;
