@@ -17,6 +17,9 @@ export class ContactMe extends React.Component {
         super(props);
 
         this.handleScroll = this.handleScroll.bind(this);
+        this.state = {
+            animationRan: false
+        }
     }
 
     /**
@@ -26,24 +29,42 @@ export class ContactMe extends React.Component {
      */
     checkIfInViewport = (className) => {
 
-        const element = document.getElementsByClassName(className)[0];
+        const element = document.getElementById("animated-svg");
 
         const rect = element.getBoundingClientRect();
         const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.356);
         const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
 
         if (vertInView) {
-            console.log('in view');
+
+            if(!this.state.animationRan) {
+                let object1 = document.getElementById('animated-svg');
+                let svg = object1.contentDocument.getElementById('eAp0ERelTqN1');
+                if(svg != null) {
+                    svg.svgatorPlayer.play();
+                    this.setState({
+                        animationRan: true
+                    })
+                }
+            }
+            
+            //Wait for the SVGtor player to be ready for use
+            // svg.svgatorPlayer.ready(function (player) {
+            //     player.play();
+
+            //     document.getElementById("cnt-msg-title").style.animationPlayState = "running";
+            //     document.getElementsByClassName('message-send-btn')[0].style.animationPlayState = "running";
+            //     document.getElementsByClassName('msg-send-btn-text')[0].style.animationPlayState = "running";
+            //     document.getElementsByClassName('cnt-btn-arw-wrapper')[0].style.animationPlayState = "running";
+            // });
+
             // document.getElementById('cnt-msg-title').style.animationPlayState = "running";
-            document.getElementById("cnt-msg-title").style.animationPlayState = "running";
-            document.getElementsByClassName('message-send-btn')[0].style.animationPlayState = "running";
-            document.getElementsByClassName('msg-send-btn-text')[0].style.animationPlayState = "running";
-            document.getElementsByClassName('cnt-btn-arw-wrapper')[0].style.animationPlayState = "running";
+
         } else {
-            document.getElementById("cnt-msg-title").style.animationPlayState = "paused";
-            document.getElementsByClassName('message-send-btn')[0].style.animationPlayState = "paused";
-            document.getElementsByClassName('msg-send-btn-text')[0].style.animationPlayState = "paused";
-            document.getElementsByClassName('cnt-btn-arw-wrapper')[0].style.animationPlayState = "paused";
+            // document.getElementById("cnt-msg-title").style.animationPlayState = "paused";
+            // document.getElementsByClassName('message-send-btn')[0].style.animationPlayState = "paused";
+            // document.getElementsByClassName('msg-send-btn-text')[0].style.animationPlayState = "paused";
+            // document.getElementsByClassName('cnt-btn-arw-wrapper')[0].style.animationPlayState = "paused";
         }
     }
 
@@ -53,6 +74,32 @@ export class ContactMe extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
         this.handleScroll();
+
+        let object1 = document.getElementById('animated-svg');
+        object1.addEventListener("load", function () {
+            //grab the <svg> element
+            let svg = object1.contentDocument.getElementById('eAp0ERelTqN1');
+
+            //Wait for the SVGtor player to be ready for use
+            svg.svgatorPlayer.ready(function (player) {
+                player.on('play', () => {
+                    if(!this.state.animationRan) {
+                        document.getElementById("cnt-msg-title").style.animationPlayState = "running";
+                        document.getElementsByClassName('message-send-btn')[0].style.animationPlayState = "running";
+                        document.getElementsByClassName('msg-send-btn-text')[0].style.animationPlayState = "running";
+                        document.getElementsByClassName('cnt-btn-arw-wrapper')[0].style.animationPlayState = "running";
+                    }
+                });
+            });
+        });
+
+
+        // svg.svgatorPlayer.on( 'play', () => {
+        //     document.getElementById("cnt-msg-title").style.animationPlayState = "running";
+        //     document.getElementsByClassName('message-send-btn')[0].style.animationPlayState = "running";
+        //     document.getElementsByClassName('msg-send-btn-text')[0].style.animationPlayState = "running";
+        //     document.getElementsByClassName('cnt-btn-arw-wrapper')[0].style.animationPlayState = "running";
+        // });
     }
 
     /**
@@ -72,7 +119,8 @@ export class ContactMe extends React.Component {
     render() {
         return (
             <div className="contact-me-wrapper">
-                <object className="contact-airplane-animation" type="image/svg+xml" data="/images/PaperAirplane.svg"></object>
+                {/* <object className="contact-airplane-animation" type="image/svg+xml" data="/images/PaperAirplane.svg"></object> */}
+                <object id="animated-svg" type="image/svg+xml" data="/images/PaperAirplane.svg"></object>
 
                 <div className="contact-me-header">
                     <a className="sfproSB">Send me a<span id="cnt-msg-title" className="cnt-ani-msg"> Message</span></a>
@@ -99,6 +147,7 @@ export class ContactMe extends React.Component {
                                 </g>
                                 <path className="exp-ar-ani" id="bgIWRvPa5dV3" d="M323.316233,150h-303.41647" transform="matrix(-.665118 0 0-1.000008 262.589828 300.0012)" fill="none" stroke="white" strokeWidth="26" strokeLinecap="round" strokeDashoffset="303.42" strokeDasharray="303.42" />
                             </svg>
+
                         </div>
                     </div>
                 </div>

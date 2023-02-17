@@ -152,7 +152,7 @@ input[type="text"] {
     animation: btn-animation-width;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
-    animation-delay: 3s;
+    animation-delay: 2.90s;
     animation-play-state: paused;
 }
 
@@ -160,7 +160,7 @@ input[type="text"] {
     animation: btn-text-animation-margin;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
-    animation-delay: 3s;
+    animation-delay: 2.9s;
     margin-left: 0vw;
     animation-play-state: paused;
 }
@@ -193,13 +193,21 @@ input[type="text"] {
     z-index: 1;
 }
 
+#animated-svg {
+    width: 100%;
+    height: 100%;
+    top: -10vh;
+    position: absolute;
+    z-index: 1;
+}
+
 #cnt-msg-title {
     white-space: pre;
     display: inline-block;
     animation: message-gradient;
     animation-duration: 0.75s;
     animation-fill-mode: forwards;
-    animation-delay: 1.05s;
+    animation-delay: 0.95s;
     background: linear-gradient(40deg, #0b83ff 0%, #6081f2 50%, white 50%, white 100%);
     background-size: 250% 250%;
     background-position: 100%;
@@ -230,7 +238,7 @@ input[type="text"] {
     animation: btn-arrow-animation;
     animation-duration: 0.75s;
     animation-fill-mode: forwards;
-    animation-delay: 3s;
+    animation-delay: 2.9s;
     position: absolute;
     animation-play-state: paused;
 }
