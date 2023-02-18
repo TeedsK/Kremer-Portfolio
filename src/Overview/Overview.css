@@ -12,7 +12,19 @@
     margin-left: 50%;
     margin-top: -10vh;
     transform: translateX(-50%);
-    
+    transition: opacity 0.75s ease-in-out, margin-top 1s ease-in-out;
+}
+
+.ovw-left-wrapper a, p{
+    transition: opacity 0.5s ease-in-out;
+}
+
+.ovw-right-wrapper a, p {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.language-wrapper {
+    transition: opacity 0.5s ease-in-out;
 }
 
 .overview-section {
