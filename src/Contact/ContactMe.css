@@ -133,7 +133,7 @@ input[type="text"] {
     margin-right: 2.5vw;
 }
 
-.message-send-btn {
+#cnt-msg-send-btn {
     z-index: 3;
     width: 12vw;
     height: 3vw;
@@ -149,14 +149,14 @@ input[type="text"] {
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    animation: btn-animation-width;
+    /* animation: btn-animation-width;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
     animation-delay: 2.90s;
-    animation-play-state: paused;
+    animation-play-state: paused; */
 }
 
-.msg-send-btn-text {
+#cnt-msg-send-btn-text {
     animation: btn-text-animation-margin;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
@@ -204,10 +204,10 @@ input[type="text"] {
 #cnt-msg-title {
     white-space: pre;
     display: inline-block;
-    animation: message-gradient;
+    /* animation: message-gradient;
     animation-duration: 0.75s;
     animation-fill-mode: forwards;
-    animation-delay: 0.95s;
+    animation-delay: 0.95s; */
     background: linear-gradient(40deg, #0b83ff 0%, #6081f2 50%, white 50%, white 100%);
     background-size: 250% 250%;
     background-position: 100%;
@@ -215,7 +215,7 @@ input[type="text"] {
     /* background-repeat:   no-repeat; */
     -webkit-text-fill-color: transparent;
     pointer-events: none;
-    animation-play-state: paused;
+    /* animation-play-state: paused; */
 
 }
 
@@ -231,7 +231,7 @@ input[type="text"] {
 
 
 
-.cnt-btn-arw-wrapper {
+#cnt-btn-arrow-wrapper {
     width: 1.1vw;
     height: 1.1vw;
     margin-left: -12.5vw;
@@ -272,19 +272,19 @@ input[type="text"] {
 
 }
 
-.message-send-btn:hover #bgIWRvPa5dV2_to {
+#cnt-msg-send-btn:hover #bgIWRvPa5dV2_to {
     transform: translate(223.208275px, 150px)
 }
 
 
-.message-send-btn:hover #bgIWRvPa5dV2_ts {
+#cnt-msg-send-btn:hover #bgIWRvPa5dV2_ts {
     transform: scale(0.8, 0.8);
 }
 
-.message-send-btn:hover #bgIWRvPa5dV2 {
+#cnt-msg-send-btn:hover #bgIWRvPa5dV2 {
     stroke-width: 26;
 }
 
-.message-send-btn:hover #bgIWRvPa5dV3 {
+#cnt-msg-send-btn:hover #bgIWRvPa5dV3 {
     stroke-dashoffset: 0;
 }
