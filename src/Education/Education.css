@@ -1,13 +1,15 @@
 .education-container {
     background-color: relative;
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
+    /* background-color: orange; */
 }
 
 .education-animation-background {
     width: 100vw;
     height: auto;
     position: absolute;
+    margin-top: -20vh;
 }
 
 .education-text-wrapper {
@@ -15,11 +17,10 @@
     /* background-color: aqua; */
     width: 45vw;
     left: 50%;
-    margin-top: 25%;
+    margin-top: 25vh;
     position: absolute;
     transform: translateX(-50%) translateY(-20%);
     text-align: center;
-    
 }
 
 .education-text-wrapper a {
