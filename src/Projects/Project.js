@@ -21,6 +21,10 @@ export class Project extends React.Component {
     constructor(props) {
         super(props);
         this.handleScroll = this.handleScroll.bind(this);
+
+        this.state = {
+            animationRan: false
+        }
     }
 
     /**
@@ -47,6 +51,45 @@ export class Project extends React.Component {
             } else {
                 elements[i].style.opacity = "0"
                 elements[i].style.top = "-1vw";
+            }
+        }
+        this.checkIfSvg();
+    }
+
+    checkIfSvg = () => {
+        const element = document.getElementById("featured-project-svg");
+
+        const rect = element.getBoundingClientRect();
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.356);
+        const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+
+        console.log(vertInView);
+
+        if (vertInView) {
+
+            if(!this.state.animationRan) {
+                let object1 = document.getElementById('featured-project-svg');
+                let svg = object1.contentDocument.getElementById('ee2vyfINoKi1');
+                if(svg != null) {
+                    this.setState({
+                        animationRan: true
+                    })
+                    svg.svgatorPlayer.play();
+                }
+            }
+            
+        } else {
+
+            if(this.state.animationRan) {
+                let object1 = document.getElementById('featured-project-svg');
+                let svg = object1.contentDocument.getElementById('ee2vyfINoKi1');
+                if(svg != null) {
+                    svg.svgatorPlayer.restart();
+                    svg.svgatorPlayer.pause();
+                    this.setState({
+                        animationRan: false
+                    })
+                }
             }
         }
     }
@@ -101,7 +144,6 @@ export class Project extends React.Component {
                     )
                 })
             }
-            
 
             sections.push(
                 <div className="project-details" key={index}>
@@ -130,9 +172,11 @@ export class Project extends React.Component {
                             {sections}
                         </div>
                     </div>
-
+                    <object width={"100%"} height={"100%"}id="featured-project-svg" type="image/svg+xml" data="/images/FeaturedProject.svg"></object>
+    
                 </div>
 
+                
                 {/* Foreground */}
                 {this.createParallax("/images/kudo/Blue.png", 50, "foreground", "40vw", "10vw", "90vh")}
 
@@ -145,7 +189,7 @@ export class Project extends React.Component {
                 {/* Background */}
                 {this.createParallax("/images/kudo/Blue2.png", 25, "background", "20vw", "30vw", "134vh")}
                 {this.createParallax("/images/kudo/ProfilesPage.png", 25, "background", "21vw", "3vw", "123vh")}
-
+            
             </div>
 
         )
