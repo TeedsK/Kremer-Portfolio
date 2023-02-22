@@ -2,7 +2,7 @@ import React from "react";
 import "./Project.css"
 // import { ParallaxLayer } from '@react-spring/parallax'
 import { Parallax } from 'react-scroll-parallax';
-
+import { gsap } from "gsap";
 
 /**
  * This react component represents a generic project class
@@ -54,16 +54,15 @@ export class Project extends React.Component {
             }
         }
         this.checkIfSvg();
+        this.checkIfFirstParallax();
     }
 
     checkIfSvg = () => {
         const element = document.getElementById("featured-project-svg");
 
         const rect = element.getBoundingClientRect();
-        const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.356);
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.156);
         const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
-
-        console.log(vertInView);
 
         if (vertInView) {
 
@@ -79,7 +78,6 @@ export class Project extends React.Component {
             }
             
         } else {
-
             if(this.state.animationRan) {
                 let object1 = document.getElementById('featured-project-svg');
                 let svg = object1.contentDocument.getElementById('ee2vyfINoKi1');
@@ -91,6 +89,28 @@ export class Project extends React.Component {
                     })
                 }
             }
+        }
+    }
+
+    checkIfFirstParallax = () => {
+        const element = document.getElementsByClassName("para")[1];
+
+        const rect = element.getBoundingClientRect();
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.356);
+        const vertInView = (rect.top <= windowHeight);
+
+        if (vertInView) {
+            gsap.to("#featured-project-svg", {
+                duration: 0.8,
+                ease: "power2.out",
+                opacity: 0
+            })
+        } else {
+            gsap.to("#featured-project-svg", {
+                duration: 0.8,
+                ease: "power2.out",
+                opacity: 1
+            })
         }
     }
 
