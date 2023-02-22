@@ -36,9 +36,75 @@ export class ProjectList extends React.Component {
     constructor(props) {
         super(props);
 
+        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
-            cardIndex: -1
+            cardIndex: -1,
+            animationRan: false
         }
+    }
+
+    /**
+     * Checks if an element is in the viewport
+     * 
+     * @param {*} className - the name of the class to check if it's in the viewport
+     */
+    checkIfInViewport = () => {
+
+        const element = document.getElementById("animated-project-svg");
+
+        const rect = element.getBoundingClientRect();
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.356);
+        const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+
+        if (vertInView) {
+
+            if(!this.state.animationRan) {
+                let object1 = document.getElementById('animated-project-svg');
+                let svg = object1.contentDocument.getElementById('eXBJlbOmj6k1');
+                if(svg != null) {
+                    this.setState({
+                        animationRan: true
+                    })
+                    svg.svgatorPlayer.play();
+                }
+            }
+            
+        } else {
+
+            if(this.state.animationRan) {
+                let object1 = document.getElementById('animated-project-svg');
+                let svg = object1.contentDocument.getElementById('eXBJlbOmj6k1');
+                if(svg != null) {
+                    svg.svgatorPlayer.restart();
+                    svg.svgatorPlayer.pause();
+                    this.setState({
+                        animationRan: false
+                    })
+                }
+            }
+        }
+    }
+
+    /**
+     * checks if this component has mounted
+     */
+    componentDidMount() {
+        window.addEventListener('scroll', this.checkIfInViewport);
+        this.checkIfInViewport();
+    }
+
+    /**
+     * checks if the version will be unmomunted
+     */
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.checkIfInViewport);
+    }
+
+    /**
+     * handles if the viewport has been scrolled
+     */
+    handleScroll() {
+        this.checkIfInViewport();
     }
 
     minimizeCard = (index) => {
@@ -110,7 +176,8 @@ export class ProjectList extends React.Component {
             <div className="project-list-background">
                 <div className="project-list-info">
                     <a className="sfproSB project-list-title fade">Project List</a>
-                    <p className="sfproB project-list-subtitle fade">scroll through the variety of projects I've created throughout the years</p>
+                    <p className="sfproB project-list-subtitle fade">the variety of projects I've created throughout the years</p>
+                    <object width={"100%"} id="animated-project-svg" type="image/svg+xml" data="/images/ProjectsOrder.svg"></object>
                 </div>
                 <div className="under-white"></div>
                 <div className="gradient-containers left-gradient-containers">

@@ -18,6 +18,15 @@
     padding-top: 7vh;
 }
 
+#animated-project-svg {
+    position: absolute;
+    width: 60vw;
+    height: 100%;
+    /* background-color: orange; */
+    right: 3vw;
+    top: -25vh;
+}
+
 .project-list-title {
     position: relative;
     color: white;
