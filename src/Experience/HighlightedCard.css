@@ -1,0 +1,62 @@
+
+.htld-exp-header-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hltd-exp-cmp-name {
+    font-size: 2.6vw;
+    margin-bottom: 2vw;
+    padding-bottom: 2vw;
+}
+
+.hltd-exp-cmp-role {
+    position: relative;
+    top: 0.5vw;
+    font-size: 1.3vw;
+    font-style: italic;
+    color: #6f6f75;
+}
+
+.cmp-role-title {
+    font-size: 1.5vw;
+    font-style: normal;
+    top: -5vw;
+    color: black;
+}
+
+.hltd-exp-cmp-years {
+    right: 1vw;
+    top: 1vw;
+    font-size: 1.5vw;
+    position: absolute;
+}
+
+.hltd-exp-right-dsc {
+    padding-bottom: 2vw;
+}
+
+.htld-exp-txt-body {
+    margin-top: 2vw;
+}
+
+.hltd-exp-left-dsc {
+    /* background-color: aqua; */
+    width: 65%;
+    float: left;
+}
+
+.hltd-exp-right-dsc {
+    width: 33%;
+    /* background-color: orange; */
+
+    color: #6f6f75;
+    float: left;
+    padding-left: 2%;
+}
+
+.hltd-exp-abt-title {
+    font-size: 1.5vw;
+    color: black;
+}

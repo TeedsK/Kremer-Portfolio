@@ -60,6 +60,8 @@ export class ExperienceElements extends React.Component {
         }
     }
 
+    
+
     /**
      * Renders the experience elements section
      * @returns a container with all the experience cards
@@ -69,6 +71,7 @@ export class ExperienceElements extends React.Component {
         const elements = [];
 
         this.props.categories.forEach((experience, i) => {
+
             elements.push(
                 <div key={i} className="element-slide" style={{transform: `translateX(${this.state.translations[i]}vw)`}}>
                     <Experience

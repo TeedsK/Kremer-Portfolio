@@ -1,5 +1,6 @@
 import React from "react";
 import './Experience.css';
+import { HighlightedCard } from './HighlightedCard.js'
 import { gsap } from "gsap";
 
 function componanyLink(link) {
@@ -14,19 +15,28 @@ function componanyLink(link) {
  */
 function ExperienceCard(props) {
 
+    const name = props.companyName;
+    const role = props.myRole;
+    const years = props.yearsWorked;
+    const dsc1 = props.myContributions;
+    const cmpLink = props.companyWebsite;
+    const clicked = props.clickEvent;
+
     const element =
         <div className={`exp${props.section} experience`}>
             <div className={`exp-grad${props.section} experience-gradient exp-grad-${props.index}`} />
-            <div className="experience-header">
-                <a className="sfproB experience-company-name">{props.companyName}</a>
-                <a className="sfproB experience-company-role">{props.myRole}</a>
-                <a className="sfpro experience-company-years">{props.yearsWorked}</a>
+            <div 
+                onClick={() => clicked(name, role, years, dsc1, dsc1, dsc1, dsc1, cmpLink)} 
+                className="experience-header">
+                <a className="sfproB experience-company-name">{name}</a>
+                <a className="sfproB experience-company-role">{role}</a>
+                <a className="sfpro experience-company-years">{years}</a>
             </div>
             <div className="sfproB experience-description">
-                <p>{props.myContributions}</p>
+                <p>{dsc1}</p>
             </div>
             <div className="experience-footer">
-                <a onClick={() => componanyLink(props.companyWebsite)}>view company website</a>
+                <a onClick={() => componanyLink(cmpLink)}>view company website</a>
             </div>
         </div>
 
@@ -58,10 +68,18 @@ export class Experience extends React.Component {
             delay: this.props.delay,
             total: this.props.workplaces.length,
             highlighted: -1,
+            htldName: null,
+            htldRole: null,
+            htldYears: null,
+            htldDsc1: null,
+            htldDsc2: null,
+            htldDsc3: null,
+            htldCmpDsc: null,
+            htldCmpLink: null,
         }
     }
 
-    rushCardToFront = (index) => {
+    highlightCard = (index) => {
 
         this.setState({
             highlighted: index
@@ -70,21 +88,31 @@ export class Experience extends React.Component {
         const elements = document.getElementsByClassName("exp" + this.state.section);
         const positions = this.state.positions;
 
-        console.log(elements);
-
-        gsap.to(elements[index], {
-            duration: 0.5,
-            ease: "power1.inOut",
-            css: {
-                top: "10%",
-            },
-        })
+        // gsap.to(elements[index], {
+        //     duration: 0.5,
+        //     ease: "power1.inOut",
+        //     css: {
+        //         top: "50%",
+        //     },
+        // })
 
         for (let i = 0; i < positions.length; i++) {
-            if (positions[i] != positions[index] && positions[i] >= 0.95) {
-                this.runSwitchAnimation(i, 2, true)
-            }
+            gsap.to(elements[i], {
+                delay: -0.5,
+                duration: 0.5,
+                ease: "power1.inOut",
+                opacity: 0,
+            })
         }
+
+        gsap.to(document.getElementsByClassName("htld-card-body-" + this.state.section), {
+            delay: 0,
+            duration: 0.5,
+            ease: "power1.inOut",
+            top: "10vh",
+            pointerEvents: "all",
+            opacity: 1,
+        })
     }
 
     runSwitchAnimation = (index, customDuration) => {
@@ -235,7 +263,7 @@ export class Experience extends React.Component {
             })
 
             const clickAnimation = () => {
-                this.rushCardToFront(elements, path, section, positions, i);
+                this.highlightCard(elements, path, section, positions, i);
             }
 
             elements[i].addEventListener("mouseenter", () => {
@@ -248,6 +276,21 @@ export class Experience extends React.Component {
         }
     }
 
+    setInformation = (cardName, cardRole, cardYears, cardDsc1, cardDsc2, cardDsc3, cardCmpDsc, cardCmpLink) => {
+        console.log('set 0.1');
+        this.setState({
+            htldName: cardName,
+            htldRole: cardRole,
+            htldYears: cardYears,
+            htldDsc1: cardDsc1,
+            htldDsc2: cardDsc2,
+            htldDsc3: cardDsc3,
+            htldCmpDsc: cardCmpDsc,
+            htldCmpLink: cardCmpLink,
+        })
+        console.log('set');
+    }
+
     /**
      * 
      * @returns 
@@ -257,11 +300,14 @@ export class Experience extends React.Component {
         const cards = [];
         const workplaces = this.props.workplaces;
         const section = this.state.section;
+        const setInformation = this.setInformation;
 
         workplaces.forEach((item, index) => {
+
             cards.push(
                 <ExperienceCard
                     section={section}
+                    clickEvent={setInformation}
                     companyName={item.companyName}
                     companyDescription={item.companyDescription}
                     companyWebsite={item.companyWebsite}
@@ -296,6 +342,17 @@ export class Experience extends React.Component {
                 <div className="experience-slide-wrapper">
                     {cards}
                 </div>
+                <HighlightedCard
+                        section={this.state.section}
+                        CompanyName={this.state.htldName}
+                        Role={this.state.htldRole}
+                        YearsWorked={this.state.htldYears}
+                        WorkDescriptionOne={this.state.htldDsc1}
+                        CompanyDescription={this.state.htldCmpDsc}
+                        CompanyLink={this.state.htldCmpLink}
+                        WorkDescriptionTwo={this.state.htldDsc2}
+                        WorkDescriptionThree={this.state.htldDsc3}
+                ></HighlightedCard>
             </div>
         )
     }
