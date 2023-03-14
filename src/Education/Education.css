@@ -6,10 +6,11 @@
 }
 
 .education-animation-background {
-    width: 100vw;
+    width: 65vw;
     height: auto;
     position: absolute;
-    margin-top: -20vh;
+    margin-top: -16vh;
+    margin-left: 15vw;
 }
 
 .education-text-wrapper {
