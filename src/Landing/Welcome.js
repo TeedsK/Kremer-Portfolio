@@ -119,7 +119,12 @@ export class Welcome extends React.Component {
             );
 
             repeatMaze();
+        })
 
+        delay(3800).then(() => {
+            gsap.to('#main-title-name', {
+                zIndex: -1
+            })
         })
 
         const links = document.querySelectorAll(".hyper-links")
@@ -214,13 +219,16 @@ export class Welcome extends React.Component {
                         <br />
                         <a className="ani sfpro welcome-hello lg-text">my name is</a>
                         <br />
-                        <a className="ani sfproSB name">Theo Kremer</a>
+                        <a className="sfproSB name">Theo Kremer</a>
                         <br />
-                        <a className="ani lg-text">as a motivated, hands-on, and collaborative<span className="text-gradient gradient-1"> Software Developer</span></a>
+                        <a className="ani lg-text">motivated, hands-on, and collaborative<span className="text-gradient gradient-1"> Software Developer</span></a>
                         <br />
                         <a className="ani lg-text">flexible, persistent and innovative <span className="text-gradient gradient-2">Debugger</span></a>
                         <br />
                         <a className="ani lg-text">I find the <span className="text-gradient gradient-3">best path</span> to a solution</a>
+                        <br />
+                        {/* <a className="ani sfpro cntrl-txt"><span className="cntrl-txt-btn">replay</span>, create maze</a> */}
+                        <object id="main-title-name" type="image/svg+xml" data="/images/TitleName.svg"></object>
                     </div>
                 </div>
                 <div id="grid_container">
