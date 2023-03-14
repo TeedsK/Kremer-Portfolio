@@ -60,12 +60,15 @@ export class ProjectList extends React.Component {
 
             if(!this.state.animationRan) {
                 let object1 = document.getElementById('animated-project-svg');
-                let svg = object1.contentDocument.getElementById('eXBJlbOmj6k1');
+                let svg = object1.contentDocument.getElementById('robotarmprojectlist');
                 if(svg != null) {
                     this.setState({
                         animationRan: true
                     })
                     svg.svgatorPlayer.play();
+                    // while(true) {
+                    //     // console.log(svg.svgatorPlayer.currentTime)
+                    // }
                 }
             }
             
@@ -73,7 +76,7 @@ export class ProjectList extends React.Component {
 
             if(this.state.animationRan) {
                 let object1 = document.getElementById('animated-project-svg');
-                let svg = object1.contentDocument.getElementById('eXBJlbOmj6k1');
+                let svg = object1.contentDocument.getElementById('robotarmprojectlist');
                 if(svg != null) {
                     svg.svgatorPlayer.restart();
                     svg.svgatorPlayer.pause();
@@ -91,6 +94,20 @@ export class ProjectList extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.checkIfInViewport);
         this.checkIfInViewport();
+
+            // let svg2 = document.getElementById('animated-project-svg').contentDocument.getElementById('robotarmprojectlist');
+            // svg2.svgatorPlayer.seek(31.72);
+
+        setInterval(function(){
+            let object1 = document.getElementById('animated-project-svg');
+            let svg = object1.contentDocument.getElementById('robotarmprojectlist');
+            if(svg != null) {
+                if(svg.svgatorPlayer.currentTime >= 28166) {
+                    svg.svgatorPlayer.seek(41.71);
+                    // svg.svgatorPlayer.pause();
+                }
+            }
+        }, 10)
     }
 
     /**
@@ -175,9 +192,11 @@ export class ProjectList extends React.Component {
         return (
             <div className="project-list-background">
                 <div className="project-list-info">
-                    <a className="sfproSB project-list-title fade">Project List</a>
-                    <p className="sfproB project-list-subtitle fade">the variety of projects I've created throughout the years</p>
-                    <object width={"100%"} id="animated-project-svg" type="image/svg+xml" data="/images/ProjectsOrder.svg"></object>
+                    <a className="sfproSB project-list-title fade">Projects</a>
+                    <p className="sfproB project-list-subtitle fade">Programs I'm most proud to work on and have created</p>
+                    {/* <object width={"100%"} id="animated-project-svg" type="image/svg+xml" data="/images/ProjectsOrder.svg"></object> */}
+                    <object width={"100%"} className="fade" id="animated-project-svg" type="image/svg+xml" data="/images/RobotArmProjectList.svg"></object>
+                    
                 </div>
                 <div className="under-white"></div>
                 <div className="gradient-containers left-gradient-containers">
@@ -190,16 +209,116 @@ export class ProjectList extends React.Component {
                 </div>
 
                 <section className="fade">
-                    <ProjectCard clickHandler={this.projectSelection} index={0} title="NASA Robotics Competition" subtitle="Utah Student Robotics" description="Working with a team of 6 others, we built then coded an autonomous and remote controlled Robot to compete in NASA's LUNABOTICS mining compeition" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={1} title="Apple - iPhone Development" subtitle="Apple's iPhone Application Workshop" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={2} title="Microsoft Excel / Google Sheets" subtitle="Dynamic Spreadsheet" description="..." footerTitle="languages & skills involved" footerDescription="C# and Git"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={3} title="Machine Learning" subtitle="Pathfinder AI" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={4} title="Artificial Inteligence" subtitle="Tic Tac Toe AI" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={5} title="Bezier Curve" subtitle="Graphic Design Tool" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={6} title="Conways Game of Life" subtitle="Teebs" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={7} title="Computer Buddie Companion" subtitle="The second attempt at a portfolio website" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={8} title="Personal Website 2.0" subtitle="The first attempt at a portfolio website" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" footerTitle="languages used" footerDescription="Python"></ProjectCard>
-                    <ProjectCard clickHandler={this.projectSelection} index={9} title="Personal Website 1.0" subtitle="The second attempt at a portfolio website" description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" footerTitle="languages used" footerDescription="Python"></ProjectCard>
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={0} 
+                        title="NASA - Mars Rover Competition" 
+                        subtitle="Utah Student Robotics" 
+                        description="Working with a team of 6 others, we built then coded an autonomous and remote controlled Robot to compete in NASA's LUNABOTICS mining compeition" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={1} 
+                        title="Apple - iPhone Development" 
+                        subtitle="Apple's iPhone Application Workshop" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={2} 
+                        title="Microsoft Excel / Google Sheets" 
+                        subtitle="Dynamic Spreadsheet" 
+                        description="..." 
+                        footerTitle="languages & skills involved" 
+                        footerDescription="C# and Git"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={3} 
+                        title="Kudo Wesbite" 
+                        subtitle="Pathfinder AI" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" 
+                        footerTitle="languages used" 
+                        footerDescription="PHP, MySQL, HTML, CSS, and JavaScript"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={3} 
+                        title="Machine Learning" 
+                        subtitle="Pathfinder AI" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={4} 
+                        title="Artificial Inteligence" 
+                        subtitle="Tic Tac Toe AI" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={5} 
+                        title="Bezier Curve" 
+                        subtitle="Graphic Design Tool" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end poinn dsjaknk ajsndkjn wqken ,msad ,makjxcnkjnq wkqnekqwne kasndm,as ,m,mzx ckjnq wkjenqwne kqwne kqnwke nqwke nqkwnejkqwnke nqkjw nekqwnek qwjk en and their neighboring nodes asdnweijnq wienq iwuenqiwu neiquwen ajksdn aksjndkjasnd iuqweiquwhe iquwne skadn kasjd dnkasjnd kjqwnekj qnkejnqwk jne dm, zx,cm z,x ckq kjenqwkenkqn emsd,mans d,ndkjqnwkjenqkwen ksnd,ma snd m,an" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={6} 
+                        title="Conways Game of Life" 
+                        subtitle="Teebs" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={7} 
+                        title="Computer Buddie Companion" 
+                        subtitle="The second attempt at a portfolio website" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={8} 
+                        title="Personal Website 2.0" 
+                        subtitle="The first attempt at a portfolio website" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
+                    <ProjectCard 
+                        clickHandler={this.projectSelection} 
+                        index={9} 
+                        title="Personal Website 1.0" 
+                        subtitle="The second attempt at a portfolio website" 
+                        description="A machine learning program that uses the A* algorithm to find the quickest path between a start and end point by assigning values to each node depending on their distance to the end point and their neighboring nodes" 
+                        footerTitle="languages used" 
+                        footerDescription="Python"
+                        ></ProjectCard>
+
                 </section>
             </div>
         )
