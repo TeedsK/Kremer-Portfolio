@@ -202,17 +202,22 @@ background-position-x: 0%;
     align-items: center; 
 }
 
-.social-links img {
-    width: 1.5vw;
-    height: auto;
+.scl-svg-wrapper {
+    cursor: pointer;
+    width: 1.85vw;
+    height: 1.85vw;
     margin-left: 1vw;
     margin-top: -20vh;
-    max-width: 2vw;
-    cursor: pointer;
-    pointer-events: all;
+    max-width: 2.35vw;
     transition: all 0.5s;
     animation: 0.4s ease-out hyper-links-intro;
     animation-fill-mode: forwards;
+}
+
+.scl-img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .hyper-links a {
@@ -227,10 +232,10 @@ background-position-x: 0%;
     animation-delay: 1.1s;
 }
 
-.social-links img:nth-child(1) { animation-delay: .1s }
-.social-links img:nth-child(2) { animation-delay: 0.3s }
-.social-links img:nth-child(3) { animation-delay: 0.5s }
-.social-links img:nth-child(4) { animation-delay: 0.7s }
+.scl-svg-wrapper:nth-child(1) { animation-delay: 0.1s }
+.scl-svg-wrapper:nth-child(2) { animation-delay: 0.3s }
+.scl-svg-wrapper:nth-child(3) { animation-delay: 0.5s }
+.scl-svg-wrapper:nth-child(4) { animation-delay: 0.7s }
 .hyper-links:nth-child(1) { animation-delay: 0.4s }
 .hyper-links:nth-child(2) { animation-delay: 0.55s }
 .hyper-links:nth-child(3) { animation-delay: 0.70s }
@@ -326,4 +331,41 @@ background-position-x: 0%;
     position: absolute;
     top: -8.5vw;
     left: -8vw;
+}
+
+.social-names {
+    /* background-color: orange; */
+    position: absolute;
+    margin-right: 0;
+    margin-top: 2vh;
+    /* height: auto; */
+    /* max-width: 2vw; */
+    left: 0vw;
+    display: flex;
+    /* justify-content: center;
+    align-items: center;  */
+    
+    
+}
+
+.scl-wrapper {
+    top: 1vw;
+    position: relative;
+    overflow:visible;
+    margin-left: 1vw;
+    width: 1.85vw;
+    max-width: 2.35vw;
+    transform: rotate(90deg);
+}
+
+.scl-name {
+    color: #8c93a1;
+    position: absolute;
+    height: auto;
+    left: 50%;
+    transform: translateY(-50%);
+    max-width: 0%;
+    opacity: 0;
+    overflow: hidden;
+    user-select: none;
 }

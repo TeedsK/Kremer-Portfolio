@@ -2,6 +2,8 @@ import React from "react";
 import './Welcome.css'
 import { Queue } from './Queue.js';
 import { gsap } from "gsap";
+import { CustomEase } from "gsap/CustomEase";
+
 import './Pathfinder.css'
 
 let GRID_CONTAINER = null;
@@ -143,6 +145,55 @@ export class Welcome extends React.Component {
                 })
             }, false);
         })
+
+        gsap.registerPlugin(CustomEase);
+
+        const sclBtns = document.querySelectorAll('.scl-svg-wrapper')
+        const svgIds = ['linkedin','github','twitter','instagram']
+        const imgs = document.querySelectorAll('.scl-img')
+        const sclTxts = document.getElementsByClassName('scl-name')
+        sclBtns.forEach((ele, i) => {
+            ele.addEventListener("mouseover", () => {
+                
+                let object1 = imgs[i];
+                let svg = object1.contentDocument.getElementById(svgIds[i]);
+                if(svg != null) 
+                    svg.svgatorPlayer.play();
+
+                gsap.to(sclTxts[i], {
+                    duration: 1,
+                    ease: CustomEase.create("custom", "M0,0 C0.79,0.14 0.15,0.86 1,1 "),
+                    maxWidth: "500%",
+                })
+
+                gsap.to(sclTxts[i], {
+                    duration: 1,
+                    ease: CustomEase.create("custom", "M0,0 C0.79,0.14 0.15,0.86 1,1 "),
+                    opacity: 1,
+                })
+
+            }, false)
+            ele.addEventListener('mouseout', () => {
+                gsap.to(sclTxts[i], {
+                    duration: 1,
+                    ease: CustomEase.create("custom", "M0,0 C0.79,0.14 0.15,0.86 1,1 "),
+                    maxWidth: "0%",
+                })
+
+                gsap.to(sclTxts[i], {
+                    delay: 0.75,
+                    duration: 0.25,
+                    ease: CustomEase.create("custom", "M0,0 C0.79,0.14 0.15,0.86 1,1 "),
+                    opacity: 0,
+                })
+
+                let object1 = imgs[i];
+                let svg = object1.contentDocument.getElementById(svgIds[i]);
+                if(svg != null) 
+                    svg.svgatorPlayer.reverse();
+
+            }, false)
+        })
     }
 
     imgClick = (link) => {
@@ -197,10 +248,36 @@ export class Welcome extends React.Component {
             <div id='welcome-page' className="welcome-wrapper">
                 <div className="welcome-header">
                     <div className="social-links">
-                        <img src="/images/linkedin.png" onClick={this.imgClick.bind(this, "https://www.linkedin.com/in/ttkremer/")}></img>
-                        <img src="/images/github.png" onClick={this.imgClick.bind(this, "https://github.com/TeedsK")}></img>
-                        <img src="/images/twitter.png" onClick={this.imgClick.bind(this, "https://twitter.com/TeedsTK")}></img>
-                        <img src="/images/instagram.png" onClick={this.imgClick.bind(this, "https://www.instagram.com/theo.kremer/")}></img>
+
+                        <div onClick={this.imgClick.bind(this, "https://www.linkedin.com/in/ttkremer/")} className="scl-svg-wrapper">
+                            <object className="scl-img" type="image/svg+xml" data="/images/LinkedIn.svg"></object>
+                        </div>
+                        <div onClick={this.imgClick.bind(this, "https://github.com/TeedsK")} className="scl-svg-wrapper">
+                            <object className="scl-img" type="image/svg+xml" data="/images/Github.svg"></object>
+                        </div>
+                        
+                        <div onClick={this.imgClick.bind(this, "https://twitter.com/TeedsTK")} className="scl-svg-wrapper">
+                            <object className="scl-img" type="image/svg+xml" data="/images/Twitter.svg"></object>
+                        </div>
+                        
+                        <div onClick={this.imgClick.bind(this, "https://www.instagram.com/theo.kremer/")} className="scl-svg-wrapper">
+                            <object className="scl-img" type="image/svg+xml" data="/images/Instagram.svg"></object>
+                        </div>
+
+                        <div className="codef social-names">
+                            <div className="scl-wrapper">
+                                <a className="scl-name">LinkedIn</a>
+                            </div>
+                            <div className="scl-wrapper">
+                                <a className="scl-name">Github</a>
+                            </div>
+                            <div className="scl-wrapper">
+                                <a className="scl-name">Twitter</a>
+                            </div>
+                            <div className="scl-wrapper">
+                                <a className="scl-name">Instagram</a>
+                            </div>
+                        </div>
                     </div>
                     <div className="hyper-links-wrapper sfpro blue">
                         <a className="hyper-links">projects</a>
