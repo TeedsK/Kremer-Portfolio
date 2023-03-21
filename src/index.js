@@ -75,7 +75,7 @@ root.render(
                 companyDescription: "VFX and Animation Studio",
                 companyWebsite: "https://www.tippett.com/",
                 yearsWorked: "2017-2018",
-                myContributions:
+                myContributions1:
                   `Built visual effect props for an Academy Award Winning CGI and special effects production company\n
     Assisted in the creation of the stop-motion animated feature film, Mad God\n
     Worked alongside the most creative minds in animated filmmaking`,
@@ -86,11 +86,11 @@ root.render(
                 companyDescription: "Cloud Based Consulting Componany",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2018-2022",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
-    Researched the design of billing system integration between business applications\n
-    Designed then coded invoices to format document output per requirements\n
-    Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
+Researched the design of billing system integration between business applications\n
+Designed then coded invoices to format document output per requirements\n
+Investigated the feasibility to customize Wix website templates to improve the overall SEO\n`,
                 myRole: "Computer Consultant",
               },
               {
@@ -98,7 +98,7 @@ root.render(
                 companyDescription: "VFX and Animation Studio",
                 companyWebsite: "https://www.tippett.com/",
                 yearsWorked: "2017-2018",
-                myContributions: ``,
+                myContributions1: ``,
                 myRole: "Intern",
               },
             ]
@@ -119,7 +119,7 @@ root.render(
                 companyDescription: "CS2420 - University of Utah",
                 companyWebsite: "https://www.tippett.com/",
                 yearsWorked: "2022-2023",
-                myContributions:
+                myContributions1:
                   `Built visual effect props for an Academy Award Winning CGI and special effects production company\n
 Assisted in the creation of the stop-motion animated feature film, Mad God\n
 Worked alongside the most creative minds in animated filmmaking`,
@@ -130,7 +130,7 @@ Worked alongside the most creative minds in animated filmmaking`,
                 companyDescription: "CS3500",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2023-2023",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
 Researched the design of billing system integration between business applications\n
 Designed then coded invoices to format document output per requirements\n
@@ -142,7 +142,7 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 companyDescription: "ROAR at UC Berkeley",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2020-2021",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
 Researched the design of billing system integration between business applications\n
 Designed then coded invoices to format document output per requirements\n
@@ -154,7 +154,7 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 companyDescription: "Berkeley City College",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2020-2021",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
 Researched the design of billing system integration between business applications\n
 Designed then coded invoices to format document output per requirements\n
@@ -179,7 +179,7 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 companyDescription: "USR at University of Utah",
                 companyWebsite: "https://www.tippett.com/",
                 yearsWorked: "2022-2023",
-                myContributions:
+                myContributions1:
                   `Built visual effect props for an Academy Award Winning CGI and special effects production company\n
 Assisted in the creation of the stop-motion animated feature film, Mad God\n
 Worked alongside the most creative minds in animated filmmaking`,
@@ -190,7 +190,7 @@ Worked alongside the most creative minds in animated filmmaking`,
                 companyDescription: "Albany High School",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2018-2022",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
 Researched the design of billing system integration between business applications\n
 Designed then coded invoices to format document output per requirements\n
@@ -202,7 +202,7 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 companyDescription: "University of Utah",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2020-2021",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
 Researched the design of billing system integration between business applications\n
 Designed then coded invoices to format document output per requirements\n
@@ -214,7 +214,7 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 companyDescription: "Albany High School",
                 companyWebsite: "https://www.rodinaconsulting.com/",
                 yearsWorked: "2019-2022",
-                myContributions:
+                myContributions1:
                   `Trained non-technical team members in understanding the functionalities of company APIs\n
 Researched the design of billing system integration between business applications\n
 Designed then coded invoices to format document output per requirements\n
