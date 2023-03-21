@@ -16,7 +16,7 @@
     top: 33%;
     left: 50%;
     margin-left: -9vw;
-    background: radial-gradient(circle at 6vw 2.5vw, #e1e2e6, #a3a3a6);
+    background: radial-gradient(circle at 6vw 2.5vw, #F5F3FB, #EFEDF7);
     animation: hover 3s ease 0s infinite;
 }
 

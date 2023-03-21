@@ -5,7 +5,7 @@ export class Education extends React.Component {
     render() {
         return(
             <div className="education-container">
-                <object className="education-animation-background" type="image/svg+xml" data="/images/CAtoUT.svg"></object>
+                {/* <object className="education-animation-background" type="image/svg+xml" data="/images/CAtoUT.svg"></object> */}
                 <div className="education-text-wrapper">
                     <a className="fade sfproSB">Education</a>
                     <br/>

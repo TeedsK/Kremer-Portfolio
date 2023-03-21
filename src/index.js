@@ -94,7 +94,7 @@ Investigated the feasibility to customize Wix website templates to improve the o
                 myRole: "Computer Consultant",
               },
               {
-                companyName: "SOMETHING WORKPLACE",
+                companyName: "Something Workplace",
                 companyDescription: "VFX and Animation Studio",
                 companyWebsite: "https://www.tippett.com/",
                 yearsWorked: "2017-2018",
