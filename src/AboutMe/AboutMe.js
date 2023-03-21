@@ -104,9 +104,9 @@ export class AboutMe extends React.Component {
             this.setState({
                 selectedSphere: elementId
             })
-            this.state.gsapMotion.forEach((ele) => {
-                ele.pause();
-            })
+            // this.state.gsapMotion.forEach((ele) => {
+            //     ele.pause();
+            // })
             this.state.ids.forEach((ele, i) => {
                 const temp = "#" + ele
                 if (elementId != ele) {
@@ -252,6 +252,7 @@ export class AboutMe extends React.Component {
                 }
             })
         )
+        
         gsap.set('.ball-shadow', {
             duration: 0.5,
             css: {
@@ -335,6 +336,7 @@ export class AboutMe extends React.Component {
                 </div>
 
                 <div className="about-me-section-description">
+                <object id="abt-me-svg" type="image/svg+xml" data="/images/AboutMe.svg"></object>
                     <div id="traveler" className="about-me-info">
                         <a className="sfproSB">Traveler</a>
                         <p className="sfproB">
