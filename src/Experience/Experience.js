@@ -7,6 +7,8 @@ function componanyLink(link) {
     window.open(link, '_blank');
 }
 
+// const BACKGROUND_COLORS = ["#EBE8F3", "#EFEDF7", "#F5F3FB", "#F5F3FB"]
+
 /**
  * Creates a new experience card
  * 
@@ -32,7 +34,7 @@ function ExperienceCard(props) {
                 <a className="sfproB experience-company-role">{role}</a>
                 <a className="sfpro experience-company-years">{years}</a>
             </div>
-            <div className="sfproB experience-description">
+            <div className="sfpro experience-description">
                 <p>{dsc1}</p>
             </div>
             <div className="experience-footer">
