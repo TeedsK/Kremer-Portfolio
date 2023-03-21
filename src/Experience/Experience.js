@@ -18,7 +18,7 @@ function ExperienceCard(props) {
     const name = props.companyName;
     const role = props.myRole;
     const years = props.yearsWorked;
-    const dsc1 = props.myContributions;
+    const dsc1 = props.myContributions1;
     const cmpLink = props.companyWebsite;
     const clicked = props.clickEvent;
 
@@ -67,7 +67,6 @@ export class Experience extends React.Component {
             section: this.props.section,
             delay: this.props.delay,
             total: this.props.workplaces.length,
-            highlighted: -1,
             htldName: null,
             htldRole: null,
             htldYears: null,
@@ -79,23 +78,18 @@ export class Experience extends React.Component {
         }
     }
 
-    highlightCard = (index) => {
-
-        this.setState({
-            highlighted: index
-        })
+    highlightCard = () => {
 
         const elements = document.getElementsByClassName("exp" + this.state.section);
+        const things = document.getElementsByClassName('experience-text-wrapper');
         const positions = this.state.positions;
+        const position = this.state.section - 1;
 
-        // gsap.to(elements[index], {
-        //     duration: 0.5,
-        //     ease: "power1.inOut",
-        //     css: {
-        //         top: "50%",
-        //     },
-        // })
-
+        gsap.to(things[position], {
+            scale: 0.75,
+            marginLeft: "-5vw"
+        })
+        
         for (let i = 0; i < positions.length; i++) {
             gsap.to(elements[i], {
                 delay: -0.5,
@@ -263,7 +257,7 @@ export class Experience extends React.Component {
             })
 
             const clickAnimation = () => {
-                this.highlightCard(elements, path, section, positions, i);
+                this.highlightCard();
             }
 
             elements[i].addEventListener("mouseenter", () => {
@@ -312,7 +306,9 @@ export class Experience extends React.Component {
                     companyDescription={item.companyDescription}
                     companyWebsite={item.companyWebsite}
                     yearsWorked={item.yearsWorked}
-                    myContributions={item.myContributions}
+                    myContributions1={item.myContributions1}
+                    myContributions2={item.myContributions2}
+                    myContributions3={item.myContributions3}
                     myRole={item.myRole}
                     key={index}
                     index={index}

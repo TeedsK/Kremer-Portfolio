@@ -1,5 +1,4 @@
 import React from "react";
-import { gsap } from "gsap";
 import './HighlightedCard.css'
 
 export class HighlightedCard extends React.Component {
@@ -8,16 +7,20 @@ export class HighlightedCard extends React.Component {
         super(props)
     }
 
+    imgClick = (link) => {
+        window.open(link, '_blank');
+    }
+
     render() {
         return (
             <div className={"htld-card-body-"+this.props.section} style={{
                 zIndex: "1000",
                 pointerEvents: 'none',
-                width: "57vw",
+                width: "60vw",
                 height: "65vh",
                 position: "absolute",
                 top: "15vh",
-                right: "7vw",
+                right: "10vw",
                 opacity: 0,
             }}>
                 <div className="hltd-exp-header">
@@ -36,7 +39,11 @@ export class HighlightedCard extends React.Component {
                         <div className="sfpro hltd-exp-right-dsc">
                             <a className="sfproSB hltd-exp-abt-title">About {this.props.CompanyName}</a>
                             <p>{this.props.CompanyDescription}</p>
-                            <a href="#">{this.props.CompanyLink}</a>
+                            <a onClick={this.imgClick.bind(this, this.props.CompanyLink)} style={{
+                                textDecoration: "underline",
+                                color: "#0000EE",
+                                cursor: "pointer"
+                            }}>{this.props.CompanyLink}</a>
                         </div>
                     </div>
                     <div className="sfpro hltd-exp-second-row">
