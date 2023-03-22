@@ -31,97 +31,94 @@ function ProjectCard(props) {
     )
 }
 
+function ProjectItem(props) {
+
+    return (
+        <div className="pj-card">
+            <div className="pj-under-1"></div>
+            
+            {/* <img className="pj-img-blurred blrd-1" src={props.imgLink}></img> */}
+            {/* <img className="pj-img-blurred blrd-2" src={props.imgLink}></img>
+            <img className="pj-img-blurred blrd-3" src={props.imgLink}></img> */}
+            <div className="pj-img-wrapper">
+                <img className="pj-img" src={props.imgLink}>
+                    
+                </img>
+                <div className="pj-under-2"></div>
+            </div>
+        </div>
+    )
+}
+
 export class ProjectList extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
             cardIndex: -1,
             animationRan: false
         }
     }
 
-    /**
-     * Checks if an element is in the viewport
-     * 
-     * @param {*} className - the name of the class to check if it's in the viewport
-     */
-    checkIfInViewport = () => {
+    componentDidMount = () => {
 
-        const element = document.getElementById("animated-project-svg");
+        let containers = document.querySelectorAll('.pj-card');
+        let wrappers = document.querySelectorAll('.pj-img-wrapper');
+        
+        let underPanels1 = document.querySelectorAll('.pj-under-1')
+        let underPanels2 = document.querySelectorAll('.pj-under-2')
 
-        const rect = element.getBoundingClientRect();
-        const windowHeight = (window.innerHeight || document.documentElement.clientHeight) - ((window.innerHeight || document.documentElement.clientHeight) * 0.356);
-        const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+        wrappers.forEach((wrapper, index) => {
 
-        if (vertInView) {
 
-            if(!this.state.animationRan) {
-                let object1 = document.getElementById('animated-project-svg');
-                let svg = object1.contentDocument.getElementById('robotarmprojectlist');
-                if(svg != null) {
-                    this.setState({
-                        animationRan: true
-                    })
-                    svg.svgatorPlayer.play();
-                    // while(true) {
-                    //     // console.log(svg.svgatorPlayer.currentTime)
-                    // }
-                }
-            }
-            
-        } else {
+            const hoverImg = gsap.to(wrapper, {
+                duration: 0.75,
+                transform: "translateY(-4vw) translateX(-4vw)",
+                ease: "power2.out",
+                paused: true,
+            })
 
-            if(this.state.animationRan) {
-                let object1 = document.getElementById('animated-project-svg');
-                let svg = object1.contentDocument.getElementById('robotarmprojectlist');
-                if(svg != null) {
-                    svg.svgatorPlayer.restart();
-                    svg.svgatorPlayer.pause();
-                    this.setState({
-                        animationRan: false
-                    })
-                }
-            }
-        }
-    }
+            const under1 = gsap.to(underPanels1[index], {
+                duration: 0.75,
+                ease: "power2.out",
+                scale: 1.1,
+                paused: true,
+            })
 
-    /**
-     * checks if this component has mounted
-     */
-    componentDidMount() {
-        window.addEventListener('scroll', this.checkIfInViewport);
-        this.checkIfInViewport();
+            const under2 = gsap.to(underPanels2[index], {
+                duration: 0.75,
+                ease: "power2.out",
+                transform:  "translateX(25%) translateY(25%)",
+                scale: 1.3,
+                paused: true,
+            })
 
-            // let svg2 = document.getElementById('animated-project-svg').contentDocument.getElementById('robotarmprojectlist');
-            // svg2.svgatorPlayer.seek(31.72);
+            wrapper.addEventListener('mouseenter', () => {
+                containers[index].style.zIndex = "100"
+                hoverImg.play()
+                under1.play();
+                under2.play();
+            })
+            wrapper.addEventListener('mouseleave', () => {
+                containers[index].style.zIndex = "50"
+                hoverImg.reverse()
+                under1.reverse();
+                under2.reverse();
+            })
 
-        setInterval(function(){
-            let object1 = document.getElementById('animated-project-svg');
-            let svg = object1.contentDocument.getElementById('robotarmprojectlist');
-            if(svg != null) {
-                if(svg.svgatorPlayer.currentTime >= 28166) {
-                    svg.svgatorPlayer.seek(41.71);
-                    // svg.svgatorPlayer.pause();
-                }
-            }
-        }, 10)
-    }
-
-    /**
-     * checks if the version will be unmomunted
-     */
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.checkIfInViewport);
-    }
-
-    /**
-     * handles if the viewport has been scrolled
-     */
-    handleScroll() {
-        this.checkIfInViewport();
+            underPanels1[index].addEventListener('mouseenter', () => {
+                containers[index].style.zIndex = "100"
+                hoverImg.play()
+                under1.play();
+                under2.play();
+            })
+            underPanels1[index].addEventListener('mouseleave', () => {
+                containers[index].style.zIndex = "50"
+                hoverImg.reverse()
+                under1.reverse();
+                under2.reverse();
+            })
+        });
     }
 
     minimizeCard = (index) => {
@@ -190,25 +187,76 @@ export class ProjectList extends React.Component {
 
     render() {
         return (
-            <div className="project-list-background">
+            <div id="project-list" className="project-list-background">
                 <div className="project-list-info">
                     <a className="sfproSB project-list-title fade">Projects</a>
-                    <p className="sfproB project-list-subtitle fade">Programs I'm most proud to work on and have created</p>
-                    {/* <object width={"100%"} id="animated-project-svg" type="image/svg+xml" data="/images/ProjectsOrder.svg"></object> */}
-                    <object width={"100%"} className="fade" id="animated-project-svg" type="image/svg+xml" data="/images/RobotArmProjectList.svg"></object>
-                    
-                </div>
-                <div className="under-white"></div>
-                <div className="gradient-containers left-gradient-containers">
-                    <div className="gradient-left-1"></div>
-                    <div className="gradient-left-2"></div>
-                </div>
-                <div className="gradient-containers right-gradient-containers">
-                    <div className="gradient-right-1"></div>
-                    <div className="gradient-right-2"></div>
+                    <p className="sfpro project-list-subtitle fade">Work that I'm most proud to have created<br />Click on a image to expand</p>
+
                 </div>
 
-                <section className="fade">
+                <div className="projects-grid-wrapper gw-1">
+                    <ProjectItem
+                        imgLink="/images/Projects/img1.jpg"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img2.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img3.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img4.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img5.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img6.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img7.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img4.png"
+                    />
+                </div>
+
+                <div className="projects-grid-wrapper gw-2">
+                    <ProjectItem
+                        imgLink="/images/Projects/img1.jpg"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img2.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img3.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img4.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img5.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img6.png"
+                    />
+                </div>
+
+                <div className="projects-grid-wrapper gw-3">
+                    <ProjectItem
+                        imgLink="/images/Projects/img1.jpg"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img2.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img3.png"
+                    />
+                    <ProjectItem
+                        imgLink="/images/Projects/img4.png"
+                    />
+                </div>
+                {/* <section className="fade">
                     <ProjectCard 
                         clickHandler={this.projectSelection} 
                         index={0} 
@@ -319,7 +367,7 @@ export class ProjectList extends React.Component {
                         footerDescription="Python"
                         ></ProjectCard>
 
-                </section>
+                </section> */}
             </div>
         )
     }
