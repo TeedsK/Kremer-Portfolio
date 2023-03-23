@@ -3,44 +3,41 @@ import React from "react";
 import "./ProjectList.css"
 import { gsap } from "gsap";
 
-function ProjectCard(props) {
-    return (
-        <div className="slideshow-card">
-            <div className="slideshow-header">
-                <a className="rubikBF">{props.title}</a>
-                <div onClick={() => props.clickHandler(props.index)} className="expand_button">
-                    <div className="expand-arrow">
-                        <span className="arrow-middle"></span>
-                        <span className="arrow-upwards"></span>
-                    </div>
-                </div>
-            </div>
-            <div className="card_under_text">
-                <div className="item_info">
-                    <div></div>
-                    <a className="small_title rubikBF">{props.subtitle}</a>
-                    <div className="card-gradient"></div>
-                    <a className="small_description rubikf">{props.description}</a>
-                </div>
-                <div className="skills-info">
-                    <a className="small_title rubikBF">{props.footerTitle}</a>
-                    <a className="small_description rubikf">{props.footerDescription}</a>
-                </div>
-            </div>
-        </div>
-    )
-}
+// function ProjectCard(props) {
+//     return (
+//         <div className="slideshow-card">
+//             <div className="slideshow-header">
+//                 <a className="rubikBF">{props.title}</a>
+//                 <div onClick={() => props.clickHandler(props.index)} className="expand_button">
+//                     <div className="expand-arrow">
+//                         <span className="arrow-middle"></span>
+//                         <span className="arrow-upwards"></span>
+//                     </div>
+//                 </div>
+//             </div>
+//             <div className="card_under_text">
+//                 <div className="item_info">
+//                     <div></div>
+//                     <a className="small_title rubikBF">{props.subtitle}</a>
+//                     <div className="card-gradient"></div>
+//                     <a className="small_description rubikf">{props.description}</a>
+//                 </div>
+//                 <div className="skills-info">
+//                     <a className="small_title rubikBF">{props.footerTitle}</a>
+//                     <a className="small_description rubikf">{props.footerDescription}</a>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
 
 function ProjectItem(props) {
 
     return (
         <div className="pj-card">
             <div className="pj-under-1"></div>
-            
-            {/* <img className="pj-img-blurred blrd-1" src={props.imgLink}></img> */}
-            {/* <img className="pj-img-blurred blrd-2" src={props.imgLink}></img>
-            <img className="pj-img-blurred blrd-3" src={props.imgLink}></img> */}
             <div className="pj-img-wrapper">
+                <a className="sfproSB pj-name">{props.name}</a>
                 <img className="pj-img" src={props.imgLink}>
                     
                 </img>
@@ -62,11 +59,11 @@ export class ProjectList extends React.Component {
 
     componentDidMount = () => {
 
-        let containers = document.querySelectorAll('.pj-card');
-        let wrappers = document.querySelectorAll('.pj-img-wrapper');
-        
-        let underPanels1 = document.querySelectorAll('.pj-under-1')
-        let underPanels2 = document.querySelectorAll('.pj-under-2')
+        const containers = document.querySelectorAll('.pj-card');
+        const wrappers = document.querySelectorAll('.pj-img-wrapper');
+        const underPanels1 = document.querySelectorAll('.pj-under-1')
+        const underPanels2 = document.querySelectorAll('.pj-under-2')
+        const texts = document.querySelectorAll('.pj-name')
 
         wrappers.forEach((wrapper, index) => {
 
@@ -93,17 +90,27 @@ export class ProjectList extends React.Component {
                 paused: true,
             })
 
+            const text = gsap.to(texts[index], {
+                duration: 0.75,
+                ease: "power2.out",
+                transform:  "translateX(-25%) translateY(-25%)",
+                opacity: 1,
+                paused: true,
+            })
+
             wrapper.addEventListener('mouseenter', () => {
                 containers[index].style.zIndex = "100"
                 hoverImg.play()
                 under1.play();
                 under2.play();
+                text.play();
             })
             wrapper.addEventListener('mouseleave', () => {
                 containers[index].style.zIndex = "50"
                 hoverImg.reverse()
                 under1.reverse();
                 under2.reverse();
+                text.reverse();
             })
 
             underPanels1[index].addEventListener('mouseenter', () => {
@@ -111,12 +118,14 @@ export class ProjectList extends React.Component {
                 hoverImg.play()
                 under1.play();
                 under2.play();
+                text.play();
             })
             underPanels1[index].addEventListener('mouseleave', () => {
                 containers[index].style.zIndex = "50"
                 hoverImg.reverse()
                 under1.reverse();
                 under2.reverse();
+                text.reverse();
             })
         });
     }
@@ -196,63 +205,81 @@ export class ProjectList extends React.Component {
 
                 <div className="projects-grid-wrapper gw-1">
                     <ProjectItem
+                        name="NASA"
                         imgLink="/images/Projects/img1.jpg"
                     />
                     <ProjectItem
+                        name="ReCaptcha"
                         imgLink="/images/Projects/img2.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img3.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img4.png"
                     />
                     <ProjectItem
+                        name="Buddie"
                         imgLink="/images/Projects/img5.png"
                     />
                     <ProjectItem
+                        name="Game of Life"
                         imgLink="/images/Projects/img6.png"
                     />
                     <ProjectItem
+                        name="Poker"
                         imgLink="/images/Projects/img7.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img4.png"
                     />
                 </div>
 
                 <div className="projects-grid-wrapper gw-2">
-                    <ProjectItem
+                <ProjectItem
+                        name="NASA"
                         imgLink="/images/Projects/img1.jpg"
                     />
                     <ProjectItem
+                        name="ReCaptcha"
                         imgLink="/images/Projects/img2.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img3.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img4.png"
                     />
                     <ProjectItem
+                        name="Buddie"
                         imgLink="/images/Projects/img5.png"
                     />
                     <ProjectItem
+                        name="Game of Life"
                         imgLink="/images/Projects/img6.png"
                     />
                 </div>
 
                 <div className="projects-grid-wrapper gw-3">
-                    <ProjectItem
+                <ProjectItem
+                        name="NASA"
                         imgLink="/images/Projects/img1.jpg"
                     />
                     <ProjectItem
+                        name="ReCaptcha"
                         imgLink="/images/Projects/img2.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img3.png"
                     />
                     <ProjectItem
+                        name="LizFlix"
                         imgLink="/images/Projects/img4.png"
                     />
                 </div>
