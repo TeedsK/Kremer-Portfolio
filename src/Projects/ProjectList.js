@@ -36,6 +36,7 @@ function ProjectItem(props) {
     return (
         <div className="pj-card">
             <div className="pj-under-1"></div>
+            {/* <img className="pj-img-blurred" src={props.imgLink}/> */}
             <div className="pj-img-wrapper">
                 <a className="sfproSB pj-name">{props.name}</a>
                 <img className="pj-img" src={props.imgLink}>
@@ -198,9 +199,9 @@ export class ProjectList extends React.Component {
         return (
             <div id="project-list" className="project-list-background">
                 <div className="project-list-info">
-                    <a className="sfproSB project-list-title fade">Projects</a>
-                    <p className="sfpro project-list-subtitle fade">Work that I'm most proud to have created<br />Click on a image to expand</p>
-
+                    <a className="sfproSB project-list-title fade">Project List</a>
+                    <p className="sfpro project-list-subtitle fade">Explore how I apply my expertise using various languages and technologies<br/>Get more information by clicking on a image to expand it</p>
+                    <div className="fade sfpro pj-list-vw-btn">Switch to List View</div>
                 </div>
 
                 <div className="projects-grid-wrapper gw-1">

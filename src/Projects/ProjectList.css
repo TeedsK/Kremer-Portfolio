@@ -38,7 +38,7 @@
     /* padding-top: 12vh; */
     margin-left: 5vw;
     margin-top: 5vh;
-    font-size: 5vw;
+    font-size: 6vw;
     transition: opacity 1s ease-in-out;
 
     /* background-size: 100%;
@@ -270,8 +270,10 @@ section::-webkit-scrollbar {
 }
 
 .pj-img-blurred {
-    opacity: 0.6;
-    filter: blur(0vw);
+    opacity: 0.1;
+    /* filter: blur(3vw); */
+    /* transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0); */
     position: absolute;
     top: 0;
     left: 0;
@@ -318,4 +320,25 @@ section::-webkit-scrollbar {
     cursor: pointer;
     text-align: center;
     transform: rotateX(-60deg) rotateY(-30deg) rotateZ(-45deg);
+}
+
+.pj-list-vw-btn {
+    width: 12vw;
+    height: 2.5vw;
+    background-color: orange;
+    margin-left: 5vw;
+    text-align: center;
+    line-height: 2.5vw;
+    border-radius: 0.2vw;
+    vertical-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: #373737;
+    outline: 0.15vw solid #3C3C3C;
+    transition: opacity 1s ease-in-out, outline 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.pj-list-vw-btn:hover {
+    background-color: #444444;
+    outline: 0vw solid #3C3C3C;
 }
