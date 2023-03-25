@@ -12,6 +12,7 @@ body {
   
   .fixed-parent {
     position: relative;
+    /* overflow-x: hidden; */
   }
   
   .featured-project-title {

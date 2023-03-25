@@ -1,6 +1,6 @@
 .project-list-background {
     position: relative;
-    height: 72vh;
+    height: 75vh;
     background-color: #111111;
     /* background-image: linear-gradient(-120deg, #151518, #111111); */
     
@@ -263,10 +263,8 @@ section::-webkit-scrollbar {
     z-index: 1;
     top: 0;
     left: 0;
-    /* pointer-events: none; */
     cursor: pointer;
     transform-origin: bottom;
-    /* transition: all 1s ease-in-out; */
 }
 
 .pj-img-blurred {
@@ -342,3 +340,38 @@ section::-webkit-scrollbar {
     background-color: #444444;
     outline: 0vw solid #3C3C3C;
 }
+
+.projects-list-wrapper {
+    margin-top: 1vw;
+    height: 25vw;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /* background-color: orange; */
+    display:flex;
+    opacity: 1;
+}
+
+.pj-lst-card {
+    margin-left: 2.1vw;
+    margin-top: 2vw;
+    float: left;
+    position: relative;
+    top: 50%;
+}
+
+.pj-lst-img {
+    position: relative;
+    width: 20vw;
+    height: auto;
+    border-radius: 0.4vw;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    transform-origin: bottom;
+    transform: translateY(-50%)
+}
+
+#pj-grd-cnt {pointer-events: all;}
+#pj-lst-cnt {pointer-events: all;}

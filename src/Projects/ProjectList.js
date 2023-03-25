@@ -31,8 +31,8 @@ import { gsap } from "gsap";
 //     )
 // }
 
-function ProjectItem(props) {
 
+function ProjectItem(props) {
     return (
         <div className="pj-card">
             <div className="pj-under-1"></div>
@@ -40,9 +40,19 @@ function ProjectItem(props) {
             <div className="pj-img-wrapper">
                 <a className="sfproSB pj-name">{props.name}</a>
                 <img className="pj-img" src={props.imgLink}>
-                    
+
                 </img>
                 <div className="pj-under-2"></div>
+            </div>
+        </div>
+    )
+}
+
+function ProjectCard(props) {
+    return (
+        <div className="pj-lst-card">
+            <div className="pj-img-wrapper">
+                <img className="pj-lst-img" src={props.imgLink}/>
             </div>
         </div>
     )
@@ -54,81 +64,119 @@ export class ProjectList extends React.Component {
         super(props);
         this.state = {
             cardIndex: -1,
-            animationRan: false
+            animationRan: false,
+            listView: false,
         }
     }
 
     componentDidMount = () => {
 
-        const containers = document.querySelectorAll('.pj-card');
-        const wrappers = document.querySelectorAll('.pj-img-wrapper');
-        const underPanels1 = document.querySelectorAll('.pj-under-1')
-        const underPanels2 = document.querySelectorAll('.pj-under-2')
-        const texts = document.querySelectorAll('.pj-name')
+        if(!this.state.listView) {
+            const containers = document.querySelectorAll('.pj-card');
+            const wrappers = document.querySelectorAll('.pj-img-wrapper');
+            const underPanels1 = document.querySelectorAll('.pj-under-1')
+            const underPanels2 = document.querySelectorAll('.pj-under-2')
+            const texts = document.querySelectorAll('.pj-name')
+    
+            wrappers.forEach((wrapper, index) => {
+    
+    
+                const hoverImg = gsap.to(wrapper, {
+                    duration: 0.75,
+                    transform: "translateY(-4vw) translateX(-4vw)",
+                    ease: "power2.out",
+                    paused: true,
+                })
+    
+                const under1 = gsap.to(underPanels1[index], {
+                    duration: 0.75,
+                    ease: "power2.out",
+                    scale: 1.1,
+                    paused: true,
+                })
+    
+                const under2 = gsap.to(underPanels2[index], {
+                    duration: 0.75,
+                    ease: "power2.out",
+                    transform: "translateX(25%) translateY(25%)",
+                    scale: 1.3,
+                    paused: true,
+                })
+    
+                const text = gsap.to(texts[index], {
+                    duration: 0.75,
+                    ease: "power2.out",
+                    transform: "translateX(-25%) translateY(-25%)",
+                    opacity: 1,
+                    paused: true,
+                })
+    
+                wrapper.addEventListener('mouseenter', () => {
+                    containers[index].style.zIndex = "100"
+                    hoverImg.play()
+                    under1.play();
+                    under2.play();
+                    text.play();
+                })
+                wrapper.addEventListener('mouseleave', () => {
+                    containers[index].style.zIndex = "50"
+                    hoverImg.reverse()
+                    under1.reverse();
+                    under2.reverse();
+                    text.reverse();
+                })
+    
+                underPanels1[index].addEventListener('mouseenter', () => {
+                    containers[index].style.zIndex = "100"
+                    hoverImg.play()
+                    under1.play();
+                    under2.play();
+                    text.play();
+                })
+                underPanels1[index].addEventListener('mouseleave', () => {
+                    containers[index].style.zIndex = "50"
+                    hoverImg.reverse()
+                    under1.reverse();
+                    under2.reverse();
+                    text.reverse();
+                })
+            });
+        }
+    }
 
-        wrappers.forEach((wrapper, index) => {
+    
+    completeCallback = (toBeShown) => {
+        this.setState({
+            listView: !this.state.listView
+        })
+        gsap.to(toBeShown, {
+            duration: 0.5,
+            opacity: 1,
+            pointerEvents: "all"
+        })
+        console.log('test')
+        
+    }
 
+    switchView = () => {
+        let toBeHidden;
 
-            const hoverImg = gsap.to(wrapper, {
-                duration: 0.75,
-                transform: "translateY(-4vw) translateX(-4vw)",
-                ease: "power2.out",
-                paused: true,
-            })
+        if(this.state.listView) {
+            toBeShown = document.getElementById('pj-grd-cnt');
+            toBeHidden = document.getElementById('pj-lst-cnt');
+        } else {
+            toBeShown = document.getElementById('pj-lst-cnt');
+            toBeHidden = document.getElementById('pj-grd-cnt');
+        }
 
-            const under1 = gsap.to(underPanels1[index], {
-                duration: 0.75,
-                ease: "power2.out",
-                scale: 1.1,
-                paused: true,
-            })
-
-            const under2 = gsap.to(underPanels2[index], {
-                duration: 0.75,
-                ease: "power2.out",
-                transform:  "translateX(25%) translateY(25%)",
-                scale: 1.3,
-                paused: true,
-            })
-
-            const text = gsap.to(texts[index], {
-                duration: 0.75,
-                ease: "power2.out",
-                transform:  "translateX(-25%) translateY(-25%)",
-                opacity: 1,
-                paused: true,
-            })
-
-            wrapper.addEventListener('mouseenter', () => {
-                containers[index].style.zIndex = "100"
-                hoverImg.play()
-                under1.play();
-                under2.play();
-                text.play();
-            })
-            wrapper.addEventListener('mouseleave', () => {
-                containers[index].style.zIndex = "50"
-                hoverImg.reverse()
-                under1.reverse();
-                under2.reverse();
-                text.reverse();
-            })
-
-            underPanels1[index].addEventListener('mouseenter', () => {
-                containers[index].style.zIndex = "100"
-                hoverImg.play()
-                under1.play();
-                under2.play();
-                text.play();
-            })
-            underPanels1[index].addEventListener('mouseleave', () => {
-                containers[index].style.zIndex = "50"
-                hoverImg.reverse()
-                under1.reverse();
-                under2.reverse();
-                text.reverse();
-            })
-        });
+        const completeCallback = this.completeCallback
+        console.log(toBeHidden)
+        gsap.to(toBeHidden, {
+            duration: 0.5,
+            opacity: 0,
+            pointerEvents: "none",
+            onComplete: () => completeCallback(toBeHidden),
+        })
     }
 
     minimizeCard = (index) => {
@@ -196,15 +244,57 @@ export class ProjectList extends React.Component {
     }
 
     render() {
+
+        let wrapper;
+
+        if (this.state.listView) {
+            wrapper = <div id="pj-lst-cnt" className="projects-list-wrapper">
+                {this.props.projects.map((list) => {
+                    return(list.map((ele, index) => {
+                        return (
+                            <ProjectCard
+                                key={index}
+                                name={ele.name}
+                                imgLink={ele.imgLink}
+                            />
+                        )
+                    }))
+                })}
+            </div>
+        } else {
+            wrapper = 
+            <div id="pj-grd-cnt">
+                {
+                    this.props.projects.map((list, i) => {
+                        return (
+                            <div key={i} className={`projects-grid-wrapper gw-${(i + 1)}`}>
+                                {list.map((ele, index) => {
+                                    return (
+                                        <ProjectItem
+                                            key={index}
+                                            name={ele.name}
+                                            imgLink={ele.imgLink}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        }
+
         return (
             <div id="project-list" className="project-list-background">
                 <div className="project-list-info">
                     <a className="sfproSB project-list-title fade">Project List</a>
-                    <p className="sfpro project-list-subtitle fade">Explore how I apply my expertise using various languages and technologies<br/>Get more information by clicking on a image to expand it</p>
-                    <div className="fade sfpro pj-list-vw-btn">Switch to List View</div>
+                    <p className="sfpro project-list-subtitle fade">Explore how I apply my expertise using various languages and technologies<br />Get more information by clicking on a image to expand it</p>
+                    <div onClick={() => {this.switchView()}} className="fade sfpro pj-list-vw-btn">Switch to List View</div>
                 </div>
 
-                <div className="projects-grid-wrapper gw-1">
+                {wrapper}
+
+                {/* <div className="projects-grid-wrapper gw-1">
                     <ProjectItem
                         name="NASA"
                         imgLink="/images/Projects/img1.jpg"
@@ -283,7 +373,15 @@ export class ProjectList extends React.Component {
                         name="LizFlix"
                         imgLink="/images/Projects/img4.png"
                     />
-                </div>
+                </div> */}
+
+
+
+
+                {/*break point*/}
+
+
+
                 {/* <section className="fade">
                     <ProjectCard 
                         clickHandler={this.projectSelection} 

@@ -7,11 +7,9 @@ import { Project } from './Projects/Project'
 import { ProjectList } from './Projects/ProjectList';
 import { AboutMe } from './AboutMe/AboutMe'
 import { Education } from './Education/Education'
-
 import { ExperienceElements } from './Experience/ExperienceElements'
 import { Overview } from './Overview/Overview'
 import reportWebVitals from './reportWebVitals';
-// import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { ContactMe } from './Contact/ContactMe';
 
@@ -51,7 +49,88 @@ root.render(
 
       </div>
 
-      <ProjectList>
+      <ProjectList
+        projects={[
+          [
+            {
+              name: "NASA",
+              imgLink: "/images/Projects/img1.jpg",
+            },
+            {
+              name: "ReCaptcha",
+              imgLink: "/images/Projects/img2.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img3.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img4.png",
+            },
+            {
+              name: "Buddie",
+              imgLink: "/images/Projects/img5.png",
+            },
+            {
+              name: "Game of Life",
+              imgLink: "/images/Projects/img6.png",
+            },
+            {
+              name: "Poker",
+              imgLink: "/images/Projects/img7.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img4.png",
+            },
+          ],
+          [
+            {
+              name: "NASA",
+              imgLink: "/images/Projects/img1.jpg",
+            },
+            {
+              name: "ReCaptcha",
+              imgLink: "/images/Projects/img2.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img3.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img4.png",
+            },
+            {
+              name: "Buddie",
+              imgLink: "/images/Projects/img5.png",
+            },
+            {
+              name: "Game of Life",
+              imgLink: "/images/Projects/img6.png",
+            },
+          ],
+          [
+            {
+              name: "NASA",
+              imgLink: "/images/Projects/img1.jpg",
+            },
+            {
+              name: "ReCaptcha",
+              imgLink: "/images/Projects/img2.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img3.png",
+            },
+            {
+              name: "LizFlix",
+              imgLink: "/images/Projects/img4.png",
+            }
+          ],
+        ]}
+      >
 
       </ProjectList>
 
@@ -77,8 +156,8 @@ root.render(
                 yearsWorked: "2017-2018",
                 myContributions1:
                   `Built visual effect props for an Academy Award Winning CGI and special effects production company\n
-    Assisted in the creation of the stop-motion animated feature film, Mad God\n
-    Worked alongside the most creative minds in animated filmmaking`,
+Assisted in the creation of the stop-motion animated feature film, Mad God\n
+Worked alongside the most creative minds in animated filmmaking`,
                 myRole: "Intern",
               },
               {
