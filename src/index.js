@@ -16,7 +16,6 @@ import { ContactMe } from './Contact/ContactMe';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
   <ParallaxProvider>
     <div>
       <div className="fixed-parent">

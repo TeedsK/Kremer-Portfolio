@@ -3,38 +3,16 @@ import React from "react";
 import "./ProjectList.css"
 import { gsap } from "gsap";
 
-// function ProjectCard(props) {
-//     return (
-//         <div className="slideshow-card">
-//             <div className="slideshow-header">
-//                 <a className="rubikBF">{props.title}</a>
-//                 <div onClick={() => props.clickHandler(props.index)} className="expand_button">
-//                     <div className="expand-arrow">
-//                         <span className="arrow-middle"></span>
-//                         <span className="arrow-upwards"></span>
-//                     </div>
-//                 </div>
-//             </div>
-//             <div className="card_under_text">
-//                 <div className="item_info">
-//                     <div></div>
-//                     <a className="small_title rubikBF">{props.subtitle}</a>
-//                     <div className="card-gradient"></div>
-//                     <a className="small_description rubikf">{props.description}</a>
-//                 </div>
-//                 <div className="skills-info">
-//                     <a className="small_title rubikBF">{props.footerTitle}</a>
-//                     <a className="small_description rubikf">{props.footerDescription}</a>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-
-
 function ProjectItem(props) {
     return (
-        <div className="pj-card">
+        <div onClick={() => props._callback(
+            props.name, 
+            props.date,
+            props.descriptions,
+            props.imgs,
+            props.links,
+            props.languages
+        )} className="pj-card">
             <div className="pj-under-1"></div>
             {/* <img className="pj-img-blurred" src={props.imgLink}/> */}
             <div className="pj-img-wrapper">
@@ -50,7 +28,14 @@ function ProjectItem(props) {
 
 function ProjectCard(props) {
     return (
-        <div className="pj-lst-card">
+        <div onClick={() => props._callback(
+            props.name, 
+            props.date,
+            props.descriptions,
+            props.imgs,
+            props.links,
+            props.languages
+        )} className="pj-lst-card">
             <div className="pj-img-wrapper">
                 <img className="pj-lst-img" src={props.imgLink}/>
             </div>
@@ -66,6 +51,13 @@ export class ProjectList extends React.Component {
             cardIndex: -1,
             animationRan: false,
             listView: false,
+
+            ftName: null,
+            ftDate: null,
+            ftDescriptions: null,
+            ftImgs: null,
+            ftLinks: null,
+            ftLanguages: null,
         }
     }
 
@@ -144,6 +136,16 @@ export class ProjectList extends React.Component {
         }
     }
 
+    _Callback = (name, date, descriptions, imgs, links, languages) => {
+        this.setState({
+            ftName: name,
+            ftDate: date,
+            ftDescriptions: descriptions,
+            ftImgs: imgs,
+            ftLinks: links,
+            ftLanguages: languages,
+        })
+    }
     
     completeCallback = (toBeShown) => {
         this.setState({
@@ -159,18 +161,16 @@ export class ProjectList extends React.Component {
     }
 
     switchView = () => {
+        
         let toBeHidden;
 
-        if(this.state.listView) {
-            toBeShown = document.getElementById('pj-grd-cnt');
+        if(this.state.listView)
             toBeHidden = document.getElementById('pj-lst-cnt');
-        } else {
-            toBeShown = document.getElementById('pj-lst-cnt');
+        else
             toBeHidden = document.getElementById('pj-grd-cnt');
-        }
-
+        
         const completeCallback = this.completeCallback
-        console.log(toBeHidden)
+
         gsap.to(toBeHidden, {
             duration: 0.5,
             opacity: 0,
@@ -253,6 +253,7 @@ export class ProjectList extends React.Component {
                     return(list.map((ele, index) => {
                         return (
                             <ProjectCard
+                                _callback={this._Callback}
                                 key={index}
                                 name={ele.name}
                                 imgLink={ele.imgLink}
@@ -271,6 +272,7 @@ export class ProjectList extends React.Component {
                                 {list.map((ele, index) => {
                                     return (
                                         <ProjectItem
+                                            _callback={this._Callback}
                                             key={index}
                                             name={ele.name}
                                             imgLink={ele.imgLink}
@@ -284,8 +286,39 @@ export class ProjectList extends React.Component {
             </div>
         }
 
+        let overlay;
+
+        const name = this.state.ftName;
+        if(name != null) {
+            const date = this.state.ftDate;
+            const descriptions = this.state.descriptions;
+            const imgs = this.state.ftImgs;
+            const links = this.state.ftLinks;
+            const languages = this.state.ftLanguages;
+            let lng = "";
+            languages.forEach((txt) => {
+                lng = lng + txt + "\n"
+            })
+            overlay = (<div className="ft-wrapper">
+                <div className="ft-inner-wrapper">
+                    <div className="ft-left"></div>
+                    <div className="ft-right">
+                        <div className="ft-header">
+                            <a>{name}</a>
+                            <a>{links}</a>
+                            <a>{date}</a>
+                        </div>
+                        <div>
+                            <p>{lng}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>)
+        }
+
         return (
             <div id="project-list" className="project-list-background">
+                {overlay}
                 <div className="project-list-info">
                     <a className="sfproSB project-list-title fade">Project List</a>
                     <p className="sfpro project-list-subtitle fade">Explore how I apply my expertise using various languages and technologies<br />Get more information by clicking on a image to expand it</p>
@@ -293,94 +326,6 @@ export class ProjectList extends React.Component {
                 </div>
 
                 {wrapper}
-
-                {/* <div className="projects-grid-wrapper gw-1">
-                    <ProjectItem
-                        name="NASA"
-                        imgLink="/images/Projects/img1.jpg"
-                    />
-                    <ProjectItem
-                        name="ReCaptcha"
-                        imgLink="/images/Projects/img2.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img3.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img4.png"
-                    />
-                    <ProjectItem
-                        name="Buddie"
-                        imgLink="/images/Projects/img5.png"
-                    />
-                    <ProjectItem
-                        name="Game of Life"
-                        imgLink="/images/Projects/img6.png"
-                    />
-                    <ProjectItem
-                        name="Poker"
-                        imgLink="/images/Projects/img7.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img4.png"
-                    />
-                </div>
-
-                <div className="projects-grid-wrapper gw-2">
-                <ProjectItem
-                        name="NASA"
-                        imgLink="/images/Projects/img1.jpg"
-                    />
-                    <ProjectItem
-                        name="ReCaptcha"
-                        imgLink="/images/Projects/img2.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img3.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img4.png"
-                    />
-                    <ProjectItem
-                        name="Buddie"
-                        imgLink="/images/Projects/img5.png"
-                    />
-                    <ProjectItem
-                        name="Game of Life"
-                        imgLink="/images/Projects/img6.png"
-                    />
-                </div>
-
-                <div className="projects-grid-wrapper gw-3">
-                <ProjectItem
-                        name="NASA"
-                        imgLink="/images/Projects/img1.jpg"
-                    />
-                    <ProjectItem
-                        name="ReCaptcha"
-                        imgLink="/images/Projects/img2.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img3.png"
-                    />
-                    <ProjectItem
-                        name="LizFlix"
-                        imgLink="/images/Projects/img4.png"
-                    />
-                </div> */}
-
-
-
-
-                {/*break point*/}
-
-
 
                 {/* <section className="fade">
                     <ProjectCard 
